@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const { hashPass } = require("../helpers/bcryptjsandjwt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,24 +17,21 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: "Email must be unique",
-        },
         validate: {
           notNull: {
-            msg: "Email is required",
+            msg: "Name is required",
           },
           notEmpty: {
-            msg: "Email is required",
-          },
-          isEmail: {
-            msg: "Invalid email format",
+            msg: "Name is required",
           },
         },
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          msg: "Username must be unique",
+        },
         validate: {
           notNull: {
             msg: "Username is required",
@@ -46,12 +44,18 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          msg: "Email must be unique",
+        },
         validate: {
           notNull: {
             msg: "Email is required",
           },
           notEmpty: {
             msg: "Email is required",
+          },
+          isEmail: {
+            msg: "Invalid email format",
           },
         },
       },
@@ -73,5 +77,8 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
+  User.beforeCreate(async (user, options) => {
+    user.password = hashPass(user.password);
+  });
   return User;
 };
