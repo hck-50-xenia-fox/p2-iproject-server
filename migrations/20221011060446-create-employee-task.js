@@ -15,6 +15,8 @@ module.exports = {
           model: "Employees",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       TaskId: {
         type: Sequelize.INTEGER,
@@ -22,6 +24,8 @@ module.exports = {
           model: "Tasks",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       status: {
         type: Sequelize.STRING,

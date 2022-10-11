@@ -34,6 +34,8 @@ module.exports = {
           model: "Companies",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,

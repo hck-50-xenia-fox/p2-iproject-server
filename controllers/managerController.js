@@ -1,5 +1,5 @@
 const { Manager, Task, Employee, EmployeeTask } = require("../models");
-const { comparePassword } = require("../helpers");
+const { comparePassword } = require("../helpers/encrypt");
 const { signToken } = require("../helpers/jwt");
 
 class ManagerController {
