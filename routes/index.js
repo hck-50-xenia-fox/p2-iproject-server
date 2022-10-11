@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const userRoute = require('./user')
 const characterRoute = require('./character')
+const summonRoute = require('./summon')
 
 
 
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
 })
 router.use('/users' ,userRoute)
 router.use('/characters', characterRoute)
+router.use('/summons', summonRoute)
 
 
 
