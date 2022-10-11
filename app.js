@@ -1,13 +1,14 @@
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
 const port = 3000;
-const cors = require('cors');
 const router = require('./routes');
 
 const { createServer } = require('http');
 const { Server } = require('socket.io');
-
 const httpServer = createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
     origin: 'http://localhost:8080',
@@ -19,23 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/', router);
-
-// app.post('/pay', async (req, res, next) => {
-//   try {
-//     let parameter = {
-//       transaction_details: {
-//         order_id: 'tes4-transaction-333',
-//         gross_amount: 500000,
-//       },
-//       credit_card: {
-//         secure: true,
-//       },
-//     };
-//   } catch (err) {
-//     console.log(err);
-//     // next(err);
-//   }
-// });
 
 //chat
 io.on('connection', socket => {
