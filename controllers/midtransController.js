@@ -3,8 +3,8 @@ const midtransClient = require('midtrans-client');
 // prepare Snap API parameter ( refer to: https://snap-docs.midtrans.com ) minimum parameter example:
 let snap = new midtransClient.Snap({
   isProduction: false,
-  serverKey: 'SB-Mid-server-JbrhEhGAfzWMT_Gvh4f15Cti',
-  clientKey: 'SB-Mid-client-bjCM0XNya_HPWhcp',
+  serverKey: process.env.MIDTRANS_SERVER,
+  clientKey: process.env.MIDTRANS_CLIENT,
 });
 
 class MidtransController {
@@ -12,7 +12,7 @@ class MidtransController {
     try {
       let parameter = {
         transaction_details: {
-          order_id: 'tes4-transaction-888',
+          order_id: 'tes4-transactios-858',
           gross_amount: 500000,
         },
         credit_card: {
