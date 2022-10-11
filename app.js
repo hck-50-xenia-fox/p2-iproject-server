@@ -1,3 +1,5 @@
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 
@@ -7,6 +9,8 @@ const router = require('./routes');
 
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+const errorHandler = require('./middlewares/error-handler');
+
 const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
@@ -97,3 +101,5 @@ io.on('connection', socket => {
 httpServer.listen(3000, () => {
   console.log('i-i', port);
 });
+
+app.use(errorHandler);
