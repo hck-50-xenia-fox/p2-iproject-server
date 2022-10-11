@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       customerName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       customerAddress: {
+        allowNull: false,
         type: Sequelize.TEXT,
       },
       InventoryId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Inventories",
@@ -25,6 +28,7 @@ module.exports = {
         onDelete: "cascade",
       },
       UserId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
@@ -34,9 +38,11 @@ module.exports = {
         onDelete: "cascade",
       },
       quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {

@@ -10,24 +10,31 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       productId: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       productName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       supplierName: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       price: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       priceToSale: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       UserId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
