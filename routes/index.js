@@ -8,6 +8,6 @@ router.get("/places", Controller.listPlaces);
 router.get('/hotels', Controller.listHotel)
 router.get('/attractions', Controller.listAttraction)
 router.get('/restaurants', Controller.listRestaurant)
-
+router.get('/covid', Controller.dataCovid)
 
 module.exports = router;
