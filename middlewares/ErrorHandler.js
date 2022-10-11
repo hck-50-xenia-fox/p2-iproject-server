@@ -4,6 +4,9 @@ function errorHandler(error, req, res, next) {
     if (error.name === 'SequelizeValidation Error') {
         code = 400
         message = error.errors[0].message
+    } else if(error.name === 'Email/Password_Incorrect') {
+        code = 401
+        message = 'Email/Password Incorrect'
     }
     else {
         code = 500
