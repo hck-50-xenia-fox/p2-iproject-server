@@ -27,6 +27,19 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
 
+      role: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: 'Role is required',
+          },
+          notNull: {
+            msg: 'Role is required',
+          },
+        },
+      },
+
       fullName: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -69,6 +82,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+
       address: {
         allowNull: false,
         type: DataTypes.STRING,
