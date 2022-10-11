@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { hashPass } = require('../helpers/bcyrpt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -21,5 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+
+  User.beforeCreate((model,option) =>{
+    model.password = hashPass(model.password)
+  })
+
   return User;
 };
