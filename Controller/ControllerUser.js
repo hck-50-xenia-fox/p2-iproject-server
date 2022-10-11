@@ -1,8 +1,8 @@
 const { hashPassword, compareHash } = require("../helpers/bcryptjs")
+const { signPayload } = require("../helpers/jwt")
 const {User} = require("../models")
 
-///tes tes
-hashPassword
+
 class ControllerUser{
     static async loginUser(req, res, next) {
         try {
@@ -17,9 +17,15 @@ class ControllerUser{
             if(!comparePassword) {
                 console.log(error)
             }
-            
+            let access_token = signPayload({
+                id: data.id,
+                username: data.username,
+                email: data.email
+            })
+            res.status(200).json({access_token, username: data.username, email:data.email})
         } catch (error) {
             console.log(error)
+            res.status(500).json({message: 'Internal Server Error'})
         }
     }
 }
