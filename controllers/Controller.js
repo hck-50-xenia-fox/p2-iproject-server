@@ -44,7 +44,7 @@ class Controller {
       if (!data) {
         throw { name: "Invalid email/password" };
       }
-      let comparePW = comparePassword(password, data.password)
+      let comparePW = comparePassword(password, data.password);
 
       if (!comparePW) {
         throw { name: "Invalid email/password" };
@@ -56,7 +56,7 @@ class Controller {
       const access_token = signPayload(payload);
       res.status(200).json({ access_token, email: data.email, id: data.id });
     } catch (error) {
-        console.log(error);
+      console.log(error);
       if (error.name === "SequelizeValidationError") {
         res.status(400).json(error.errors[0].message);
       } else if (error.name === "Invalid email/password") {
@@ -88,10 +88,41 @@ class Controller {
         },
       });
       // console.log(data);
-      res.status(200).json(data);
+      res.status(200).json(data.data);
       // res.status(200).json({ test: "ini test" });
     } catch (error) {
       // console.log(error);
+      res.status(500).json({ msg: "Internal Server Error" });
+    }
+  }
+
+  static async listHotel(req, res) {
+    try {
+      const page = +req.query.page || 1;
+      const limit = +req.query.size || 6;
+      const location_id = +req.query.location_id || 294229;
+      const adults = +req.query.adults || 1;
+      const rooms = +req.query.rooms || 1;
+      const nights = +req.query.nights || 1;
+
+      let offset = (page - 1) * limit;
+
+      let { data } = await axios({
+        method: "get",
+        url: `${rapid_url}/hotels/list`,
+        headers: rapid_headers,
+        params: {
+          location_id,
+          limit,
+          offset,
+          adults,
+          rooms,
+          nights,
+        },
+      });
+      //   console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
       res.status(500).json({ msg: "Internal Server Error" });
     }
   }
