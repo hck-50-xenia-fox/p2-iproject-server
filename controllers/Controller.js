@@ -126,6 +126,32 @@ class Controller {
       res.status(500).json({ msg: "Internal Server Error" });
     }
   }
+
+  static async listAttraction(req, res) {
+    try {
+      const page = +req.query.page || 1;
+      const limit = +req.query.size || 6;
+      const location_id = +req.query.location_id || 294229;
+
+      let offset = (page - 1) * limit;
+
+      let { data } = await axios({
+        method: "get",
+        url: `${rapid_url}/attractions/list`,
+        headers: rapid_headers,
+        params: {
+          location_id,
+          limit,
+          offset,
+          units: "km",
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ msg: "Internal Server Error" });
+    }
+  }
+
 }
 
 module.exports = Controller;

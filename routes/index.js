@@ -6,6 +6,7 @@ router.post("/register", Controller.registerUser);
 router.post("/login", Controller.loginUser);
 router.get("/places", Controller.listPlaces);
 router.get('/hotels', Controller.listHotel)
+router.get('/attractions', Controller.listAttraction)
 
 
 module.exports = router;
