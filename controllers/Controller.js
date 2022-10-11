@@ -10,6 +10,11 @@ const rapid_headers = {
   "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
 };
 
+const covid_headers = {
+  "X-RapidAPI-Key": "cd863f5f96mshbead8b39312ff1dp172206jsn04685c7e04f5",
+  "X-RapidAPI-Host": "covid-193.p.rapidapi.com",
+};
+
 class Controller {
   static async registerUser(req, res) {
     try {
@@ -177,6 +182,23 @@ class Controller {
     }
   }
 
+  static async dataCovid(req, res) {
+    try {
+      const nameCountry = req.query.country;
+      let { data } = await axios({
+        method: "get",
+        url: `https://covid-193.p.rapidapi.com/countries`,
+        headers: covid_headers,
+        params: {
+          nameCountry,
+        },
+      });
+    //   console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ msg: "Internal Server Error" });
+    }
+  }
 }
 
 module.exports = Controller;
