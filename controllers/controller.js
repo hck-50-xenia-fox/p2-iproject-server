@@ -1,6 +1,7 @@
-const { payloadToToken } = require("../helpers/tokengen");
+const { payloadToToken } = require("../helpers/gentoken");
 const { compareThePass } = require("../helpers/encryption");
 const { OAuth2Client } = require("google-auth-library");
+const axios = require("axios");
 
 const {
   User,
@@ -11,7 +12,7 @@ const {
   Category,
 } = require("../models");
 
-class Conntroller {
+class Controller {
   static async signUp(req, res, next) {
     try {
       const { username, email, password, phoneNumber, address } = req.body;
@@ -77,4 +78,22 @@ class Conntroller {
       next(err);
     }
   }
+
+  static async getRestaurantData(req, res, next) {
+    try {
+      let { data } = await axios.get(
+        "https://api.yelp.com/v3/businesses/search?term=restaurant&location=Hollywood",
+        {
+          headers: {
+            authorization: `Bearer ${process.env.yelpApiKey}`,
+          },
+        }
+      );
+      res.status(200).json(data.businesses);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
+
+module.exports = Controller;

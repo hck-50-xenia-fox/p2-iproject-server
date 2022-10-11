@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/hck-50-xenia-fox/p2-iproject-server#readme",
   "dependencies": {
+    "axios": "^1.1.2",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
