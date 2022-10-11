@@ -20,8 +20,8 @@ app.post('/pay', async (req, res, next) => {
     // prepare Snap API parameter ( refer to: https://snap-docs.midtrans.com ) minimum parameter example:
     let parameter = {
       transaction_details: {
-        order_id: 'test-transaction-123',
-        gross_amount: 200000,
+        order_id: 'tes4-transaction-1223',
+        gross_amount: 500000,
       },
       credit_card: {
         secure: true,
