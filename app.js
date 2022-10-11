@@ -28,9 +28,8 @@ app.use('/', router);
 //chat
 io.on('connection', socket => {
   socket.on('new-message', data => {
-    //tell client to execute new msg
     socket.emit('new-message', {
-      // username: socket.username, use this later--
+      // username:
       message: data,
     });
     console.log(data);

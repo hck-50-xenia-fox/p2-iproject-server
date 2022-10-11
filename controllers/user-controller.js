@@ -1,4 +1,4 @@
-const { tokenSign } = require('../helpers');
+const { tokenSign, passCompare } = require('../helpers');
 const { User } = require('../models/index');
 
 class UserController {
@@ -32,10 +32,13 @@ class UserController {
 
   static async register(req, res, next) {
     try {
-      const { email, name, password, fullName } = req.body;
+      const { email, name, password, fullName, address } = req.body;
       const response = await User.create({
         email,
         password,
+        name,
+        fullName,
+        address,
       });
 
       res.status(201).json({
