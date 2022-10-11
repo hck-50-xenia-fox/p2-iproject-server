@@ -1,6 +1,14 @@
 const { comparePassword } = require("../helpers/bcrypt");
 const { signPayload } = require("../helpers/jwt");
 const { User } = require("../models/index");
+const axios = require("axios");
+const X_RapidAPI_Key = process.env.X_RapidAPI_Key;
+const X_RapidAPI_Host = "travel-advisor.p.rapidapi.com";
+const rapid_url = "https://travel-advisor.p.rapidapi.com";
+const rapid_headers = {
+  "X-RapidAPI-Key": "cd863f5f96mshbead8b39312ff1dp172206jsn04685c7e04f5",
+  "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+};
 
 class Controller {
   static async registerUser(req, res) {
@@ -56,6 +64,35 @@ class Controller {
       } else {
         res.status(500).json({ msg: "Internal Server Error" });
       }
+    }
+  }
+
+  static async listPlaces(req, res) {
+    try {
+      const page = +req.query.page || 1;
+      const limit = +req.query.size || 6;
+      const query = req.query.search || "jakarta";
+
+      let offset = (page - 1) * limit;
+
+      let { data } = await axios({
+        method: "get",
+        url: `${rapid_url}/locations/search`,
+        headers: rapid_headers,
+        params: {
+          query,
+          limit,
+          offset,
+          units: "km",
+          lang: "en-US",
+        },
+      });
+      // console.log(data);
+      res.status(200).json(data);
+      // res.status(200).json({ test: "ini test" });
+    } catch (error) {
+      // console.log(error);
+      res.status(500).json({ msg: "Internal Server Error" });
     }
   }
 }
