@@ -28,6 +28,20 @@ class ControllerUser{
             res.status(500).json({message: 'Internal Server Error'})
         }
     }
+    static async registerUser(req, res, next) {
+        try {
+            let {username, email, password} = req.body
+            let data = await User.create({
+                username,
+                email,
+                password
+            })
+            res.status(201).json({message: 'Success Register'})
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({message: 'Internal Server Error'})
+        }
+    }
 }
 
 

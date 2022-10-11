@@ -4,7 +4,8 @@ const ControllerUser = require('../Controller/ControllerUser')
 
 const router = express.Router()
 
-router.post('/login', ControllerUser)
+router.post('/login', ControllerUser.loginUser)
+router.post('/register', ControllerUser.registerUser)
 
 
 
