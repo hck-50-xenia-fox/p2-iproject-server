@@ -39,10 +39,63 @@ class CompanyController {
       }
       const payload = {
         id: findCompany.id,
-        companyEmail: findCompany.companyEmail,
+        email: findCompany.companyEmail,
       };
       const { access_token } = signToken(payload);
       res.status(200).json({ access_token });
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getEmployee(req, res, next) {
+    try {
+      const data = await Employee.findAll({
+        where: {
+          CompanyId: req.company.id,
+          include: {
+            model: Manager,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getManager(req, res, next) {
+    try {
+      const data = await Manager.findAll({
+        where: {
+          CompanyId: req.company.id,
+          include: {
+            model: Employee,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async deleteManager(req, res, next) {
+    try {
+      const { id } = req.params;
+      const findManager = await Manager.findByPk(id);
+      if (!findManager) {
+        throw { name: "Data not found" };
+      }
+      await Manager.destroy({
+        where: { id },
+      });
+      res
+        .status(200)
+        .json({ message: "Success deleted manager with id " + id });
     } catch (error) {
       next(error);
     }
