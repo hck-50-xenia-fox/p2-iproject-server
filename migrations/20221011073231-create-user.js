@@ -14,13 +14,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      username: {
+      companyName: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING,
+      },
+      address: {
+        allowNull: false,
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,

@@ -31,7 +31,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      username: DataTypes.STRING,
+      companyName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please fill the CompanyName",
+          },
+          notNull: {
+            msg: "Please fill the CompanyName",
+          },
+        },
+      },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -41,6 +52,18 @@ module.exports = (sequelize, DataTypes) => {
           },
           notNull: {
             msg: "Please fill the Password",
+          },
+        },
+      },
+      address : {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please fill the Address",
+          },
+          notNull: {
+            msg: "Please fill the Address",
           },
         },
       },

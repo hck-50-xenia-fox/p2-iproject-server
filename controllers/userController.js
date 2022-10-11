@@ -5,11 +5,12 @@ let { User } = require("../models");
 class UserController {
   static async Register(req, res, next) {
     try {
-      let { email, username, password } = req.body;
+      let { email, companyName, password, address } = req.body;
       let registerUser = await User.create({
         email,
-        username,
+        companyName,
         password,
+        address,
       });
       res.status(201).send(registerUser);
     } catch (error) {
@@ -36,8 +37,7 @@ class UserController {
       }
       const payload = {
         id: userLogin.id,
-        username: userLogin.username,
-        role: userLogin.role,
+        companyName: userLogin.companyName,
       };
       const access_token = signPayloadToToken(payload);
       res.status(200).json({ access_token });

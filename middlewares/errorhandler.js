@@ -22,9 +22,16 @@ async function errorHandler(err, req, res, next) {
   } else if (err.name == "SequelizeUniqueConstraintError") {
     code = 400;
     message = "ACCOUNT_HAS_ALREADY_BEEN_CREATED";
-  } else if (err.name == "Already_Bookmark") {
+  } else if (
+    err.name == "You Cannot Delete because there's Sale with this stock item"
+  ) {
     code = 400;
-    message = "JOB_ALREADY_BOOKMARK";
+    message = "You Cannot Delete because there's Sale with this stock item";
+  } else if (
+    err.name == "You Cannot Edit because there's Sale with this stock item"
+  ) {
+    code = 400;
+    message = "You Cannot Edit because there's Sale with this stock item";
   } else {
     code = 500;
     message = "INTERNAL_SERVICE_ERROR";

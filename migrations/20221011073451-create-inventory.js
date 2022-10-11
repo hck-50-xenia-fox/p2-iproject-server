@@ -9,10 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      productId: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
       productName: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -25,11 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      price: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      priceToSale: {
+      pricePerItem: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },

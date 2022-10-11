@@ -1,33 +1,27 @@
-"use strict";
+'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Invoices", {
+    await queryInterface.createTable('Histories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
-      customerName: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      expense: {
+        type: Sequelize.INTEGER
       },
-      customerAddress: {
-        allowNull: false,
-        type: Sequelize.TEXT,
+      revenue: {
+        type: Sequelize.INTEGER
       },
-      InventoryId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Inventories",
-          key: "id",
-        },
-        onUpdate: "cascade",
-        onDelete: "cascade",
+      description: {
+        type: Sequelize.STRING
       },
-      UserId: {
+      type: {
+        type: Sequelize.STRING
+      },
+      UserId : {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -37,25 +31,35 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
-      quantity: {
-        allowNull: false,
+      InventoryId : {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Inventories",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
-      priceToSale: {
-        allowNull: false,
+      InvoiceId : {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Invoices",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Invoices");
-  },
+    await queryInterface.dropTable('Histories');
+  }
 };

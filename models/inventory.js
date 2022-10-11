@@ -11,16 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Inventory.belongsTo(models.User, { foreignKey: "UserId" });
       Inventory.hasMany(models.Invoice, { foreignKey: "InventoryId" });
+      Inventory.hasMany(models.History, { foreignKey: "InventoryId" });
     }
   }
   Inventory.init(
     {
-      productId: DataTypes.STRING,
       productName: DataTypes.STRING,
       supplierName: DataTypes.STRING,
       quantity: DataTypes.INTEGER,
-      price: DataTypes.INTEGER,
-      priceToSale: DataTypes.INTEGER,
+      pricePerItem: DataTypes.INTEGER,
       UserId: DataTypes.INTEGER,
     },
     {
