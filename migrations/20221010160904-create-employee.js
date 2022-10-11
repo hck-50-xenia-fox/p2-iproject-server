@@ -34,6 +34,8 @@ module.exports = {
           model: "Managers",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       CompanyId: {
         type: Sequelize.INTEGER,
@@ -41,6 +43,8 @@ module.exports = {
           model: "Companies",
           key: "id",
         },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       createdAt: {
         allowNull: false,
