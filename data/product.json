@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Vitakraft Crispy Crunch Cat Snack 60gr Salmon - Snack Kucing",
+        "description": "Snack Kucing",
+        "price": "21000",
+        "stock": "15",
+        "weight": "80g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/vitakraft_vitakraft_crispy_crunch_salmon_-60g-_full05_ihwav33x_1664835415184_resized1024.webp",
+        "categoryId": "1"
+    },
+    {
+        "name": "Vitakraft Treaties Bits Chicken 144gr - Snack Anjing",
+        "description": "Snack Anjing",
+        "price": "56000",
+        "stock": "10",
+        "weight": "80g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/712a2061295df922ee53a2d5564f28ff_1664836907582_resized1024.jpg",
+        "categoryId": "2"
+    },
+    {
+        "name": "Friskies Surfin Favorite 6.5kg - Makanan Kucing",
+        "description": "Makanan Kucing Kering yang diproduksi dengan Nutrisi yang lengkap dan seimbang, di perkaya dengan Protein, Asam lemak Esensial, Anti-oxidan, Vitamin A &Taurine dengan campuran berbagai rasa Ikan.",
+        "price": "308000",
+        "stock": "25",
+        "weight": "7000g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/68fe847384563e66b28faeb4d5c56127_1_1664470803922_resized1024.jpg",
+        "categoryId": "3"
+    },
+    {
+        "name": "Royal Canin Vet Mature Small Dog 1.5kg - Makanan Kering Anjing Senior",
+        "description": "Vitalitas & kesehatan otak, pemilihan nutrisi yang membantu mendukung fungsi vital pada anjing yang menua.",
+        "price": "202000",
+        "stock": "15",
+        "weight": "1700g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/f1f2d490-05de-41f7-8ef9-e53a69d86d00_1662992920998_resized1024.jpg",
+        "categoryId": "3"
+    },
+    {
+        "name": "Long Tail Mouse Toy - Boneka Catnip Flanel mainan kucing - cat toy",
+        "description": "Ekor Panjang Mouse Kucing Penggoda Mainan Lucu Mainan Hewan Peliharaan Mainan Kucing Mainan Mouse Trainning Lucu Bermain Mainan Interaktif dengan Catnip",
+        "price": "30000",
+        "stock": "20",
+        "weight": "50g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/9212280_0adc99df-9163-4799-b52c-fcd2ab0341ee_800_800_1592505836545._resized1024.jpeg",
+        "categoryId": "5"
+    },
+    {
+        "name": "Necklace (16 Fish Bone)",
+        "description": "Nackalece motif tulang ikan cocok untuk kuicng dewasa dan kitten.",
+        "price": "10000",
+        "stock": "15",
+        "weight": "500g",
+        "imgUrl": "https://dbs9nopbkp043.cloudfront.net/images/products/38d954d0-ad3c-49f1-8786-08e8784879d3_1660895571921_resized1024.jpg",
+        "categoryId": "5"
+    }
+]
