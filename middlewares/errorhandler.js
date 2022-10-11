@@ -4,6 +4,9 @@ async function errorHandler(err, req, res, next) {
   if (err.name == "SequelizeValidationError") {
     code = 400;
     message = err.errors[0].message;
+  } else if (err.name == "Rev Has Already Used") {
+    code = 400;
+    message = "Rev Has Already Used";
   } else if (err.name == "Error not found") {
     code = 404;
     message = "ERROR_NOT_FOUND";
@@ -32,6 +35,9 @@ async function errorHandler(err, req, res, next) {
   ) {
     code = 400;
     message = "You Cannot Edit because there's Sale with this stock item";
+  } else if (err.name == "Stock is not Enough") {
+    code = 400;
+    message = "Stock is not Enough";
   } else {
     code = 500;
     message = "INTERNAL_SERVICE_ERROR";

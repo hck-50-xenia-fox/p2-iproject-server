@@ -20,7 +20,17 @@ class InventoryController {
     console.log(req.body);
     try {
       let UserId = req.user.id;
-      let { productName, supplierName, quantity, pricePerItem } = req.body;
+      let { productName, supplierName, quantity, pricePerItem, rev } = req.body;
+      let findRev = await Inventory.findAll({
+        where: {
+          [Op.and]: [{ rev }, { UserId }],
+        },
+      });
+      if (findRev.length > 0) {
+        throw {
+          name: "Rev Has Already Used",
+        };
+      }
       let totalPrice = +pricePerItem * +quantity;
       let data = await Inventory.create({
         productName,
@@ -28,6 +38,7 @@ class InventoryController {
         quantity,
         pricePerItem,
         UserId,
+        rev,
       });
       await History.create({
         expense: totalPrice,
@@ -35,6 +46,7 @@ class InventoryController {
         type: "Purchase",
         InventoryId: data.id,
         UserId,
+        rev,
       });
       let message = `Purchase ${data.productName} from ${data.supplierName} with item Id ${data.id} success record`;
       res.status(201).json({ message });
@@ -50,7 +62,11 @@ class InventoryController {
       let id = req.params.id;
       let { productName, supplierName, quantity, pricePerItem } = req.body;
       let totalPrice = +pricePerItem * +quantity;
-      let beforeEdit = await Inventory.findByPk(id);
+      let beforeEdit = await Inventory.findOne({
+        where: {
+          [Op.and]: [{ UserId }, { id }],
+        },
+      });
       if (!beforeEdit) {
         throw { name: "Error not found" };
       }
@@ -89,12 +105,16 @@ class InventoryController {
         },
         {
           where: {
-            [Op.and]: [{ UserId }, { InventoryId: id }],
+            [Op.and]: [
+              { UserId },
+              { InventoryId: id },
+              { rev: beforeEdit.rev },
+            ],
           },
         }
       );
       let message = `Purchase ${afterEdit.productName} from ${afterEdit.supplierName} with item Id ${id} success revise`;
-      res.status(201).json({ message });
+      res.status(200).json({ message });
     } catch (error) {
       next(error);
     }
@@ -120,16 +140,20 @@ class InventoryController {
       }
       await Inventory.destroy({
         where: {
-          id,
+          [Op.and]: [{ UserId }, { id }, { rev: beforeDelete.rev }],
         },
       });
       await History.destroy({
         where: {
-          [Op.and]: [{ UserId }, { InventoryId: id }],
+          [Op.and]: [
+            { UserId },
+            { InventoryId: id },
+            { rev: beforeDelete.rev },
+          ],
         },
       });
       let message = `Purchase ${beforeDelete.productName} from ${beforeDelete.supplierName} with item Id ${id} success DELETE`;
-      res.status(201).json({ message });
+      res.status(200).json({ message });
     } catch (error) {
       next(error);
     }
