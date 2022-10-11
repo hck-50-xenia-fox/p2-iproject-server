@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Employee.belongsTo(models.Manager);
       Employee.belongsTo(models.Company);
+      Employee.belongsToMany(models.Task, { through: models.EmployeeTask });
+      Employee.hasMany(models.EmployeeTask);
       // define association here
     }
   }
@@ -96,6 +98,18 @@ module.exports = (sequelize, DataTypes) => {
           },
           notEmpty: {
             msg: "Manager id required",
+          },
+        },
+      },
+      CompanyId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Company id required",
+          },
+          notEmpty: {
+            msg: "Company id required",
           },
         },
       },
