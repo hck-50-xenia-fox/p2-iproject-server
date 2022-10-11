@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Agni",
+        "element": "Fire",
+        "imageUrl": "https://gbf.wiki/Agni#/media/File:Summon_b_2040094000_02.png"
+    },
+    {
+        "name": "Varuna",
+        "element": "Water",
+        "imageUrl": "https://gbf.wiki/Varuna#/media/File:Summon_b_2040100000_02.png"
+    },
+    {
+        "name": "Titan",
+        "element": "Earth",
+        "imageUrl": "https://gbf.wiki/Titan#/media/File:Summon_b_2040084000_02.png"
+    },
+    {
+        "name": "Zephyrus",
+        "element": "Wind",
+        "imageUrl": "https://gbf.wiki/Zephyrus#/media/File:Summon_b_2040098000_02.png"
+    },
+    {
+        "name": "Zeus",
+        "element": "Light",
+        "imageUrl": "https://gbf.wiki/Zeus#/media/File:Summon_b_2040080000_02.png"
+    },
+    {
+        "name": "Hades",
+        "element": "Dark",
+        "imageUrl": "https://gbf.wiki/Hades#/media/File:Summon_b_2040090000_02.png"
+    }
+]
