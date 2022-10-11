@@ -13,6 +13,24 @@ class productController{
             next(error)
         }
     }
+
+    static async addProduct(req, res, next){
+        try {
+            let {name, description, price, stock, weight, imgUrl, categoryId} = req.body
+            await Product.create({
+                name,
+                description,
+                price,
+                stock,
+                weight,
+                imgUrl,
+                categoryId,
+            })
+            res.status(201).json({msg: 'Success add new product'})
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 module.exports = productController

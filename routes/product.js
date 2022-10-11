@@ -3,5 +3,6 @@ const router = express.Router()
 const productController = require ('../controllers/fetchProduct')
 
 router.get('/', productController.fetchProduct)
+router.post('/', productController.addProduct)
 
 module.exports = router
