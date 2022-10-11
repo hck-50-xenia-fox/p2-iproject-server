@@ -11,11 +11,11 @@ class ControllerUser{
                 where: { email }
             })
             if(!data) {
-                console.log(error)
+                throw { name : 'Email/Password_Incorrect'}
             }
             let comparePassword = compareHash(password, data.password)
             if(!comparePassword) {
-                console.log(error)
+                throw { name : 'Email/Password_Incorrect'}
             }
             let access_token = signPayload({
                 id: data.id,
@@ -24,8 +24,7 @@ class ControllerUser{
             })
             res.status(200).json({access_token, username: data.username, email:data.email})
         } catch (error) {
-            console.log(error)
-            res.status(500).json({message: 'Internal Server Error'})
+            next(error)
         }
     }
     static async registerUser(req, res, next) {
@@ -38,8 +37,7 @@ class ControllerUser{
             })
             res.status(201).json({message: 'Success Register'})
         } catch (error) {
-            console.log(error)
-            res.status(500).json({message: 'Internal Server Error'})
+            next(error)
         }
     }
 }

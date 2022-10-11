@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
-  User.beforeBulkCreate(user => {
+  User.beforeCreate(user => {
     user.password = hashPassword(user.password)
   })
 
