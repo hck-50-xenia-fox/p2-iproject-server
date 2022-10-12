@@ -75,10 +75,10 @@ class Controller {
   static async listPlaces(req, res) {
     try {
       const page = +req.query.page || 1;
-      const limit = +req.query.size || 6;
+      const limit = +req.query.size || 8;
       const query = req.query.search || "jakarta";
 
-      let offset = (page - 1) * limit;
+      let offset = page * limit - limit;
 
       let { data } = await axios({
         method: "get",
@@ -104,13 +104,13 @@ class Controller {
   static async listHotel(req, res) {
     try {
       const page = +req.query.page || 1;
-      const limit = +req.query.size || 6;
+      const limit = +req.query.size || 8;
       const location_id = +req.query.location_id || 294229;
       const adults = +req.query.adults || 1;
       const rooms = +req.query.rooms || 1;
       const nights = +req.query.nights || 1;
 
-      let offset = (page - 1) * limit;
+      let offset = page * limit - limit;
 
       let { data } = await axios({
         method: "get",
@@ -125,8 +125,8 @@ class Controller {
           nights,
         },
       });
-      //   console.log(data);
-      res.status(200).json(data);
+      // console.log(data);
+      res.status(200).json(data.data);
     } catch (error) {
       res.status(500).json({ msg: "Internal Server Error" });
     }
@@ -135,10 +135,10 @@ class Controller {
   static async listAttraction(req, res) {
     try {
       const page = +req.query.page || 1;
-      const limit = +req.query.size || 6;
+      const limit = +req.query.size || 8;
       const location_id = +req.query.location_id || 294229;
 
-      let offset = (page - 1) * limit;
+      let offset = page * limit - limit;
 
       let { data } = await axios({
         method: "get",
@@ -151,7 +151,8 @@ class Controller {
           units: "km",
         },
       });
-      res.status(200).json(data);
+      // console.log(data);
+      res.status(200).json(data.data);
     } catch (error) {
       res.status(500).json({ msg: "Internal Server Error" });
     }
@@ -160,10 +161,10 @@ class Controller {
   static async listRestaurant(req, res) {
     try {
       const page = +req.query.page || 1;
-      const limit = +req.query.size || 6;
+      const limit = +req.query.size || 8;
       const location_id = +req.query.location_id || 294229;
 
-      let offset = (page - 1) * limit;
+      let offset = page * limit - limit;
 
       let { data } = await axios({
         method: "get",
@@ -176,7 +177,7 @@ class Controller {
           units: "km",
         },
       });
-      res.status(200).json(data);
+      res.status(200).json(data.data);
     } catch (error) {
       res.status(500).json({ msg: "Internal Server Error" });
     }
@@ -184,16 +185,16 @@ class Controller {
 
   static async dataCovid(req, res) {
     try {
-      const nameCountry = req.query.country;
+      const nameCountry = req.query.country || "indonesia";
       let { data } = await axios({
         method: "get",
-        url: `https://covid-193.p.rapidapi.com/countries`,
+        url: `https://covid-193.p.rapidapi.com/statistics`,
         headers: covid_headers,
         params: {
-          nameCountry,
+          country: nameCountry,
         },
       });
-    //   console.log(data);
+      //   console.log(data);
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ msg: "Internal Server Error" });
