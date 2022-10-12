@@ -1,3 +1,4 @@
+require('dotenv').config()
 const cors = require("cors");
 const express = require("express");
 const app = express();
@@ -5,14 +6,14 @@ const mongoose = require("mongoose");
 const routes = require("./routes/index");
 const errorhandler = require('./middlewares/errorhandler')
 
+
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-mongoose.connect(
-  "mongodb+srv://adibwafi:Aksesbebas123@sewamotor.38vyhzk.mongodb.net/SewaMotor?retryWrites=true&w=majority",
+mongoose.connect( process.env.DB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
