@@ -1,6 +1,9 @@
 const { hashPassword, compareHash } = require("../helpers/bcryptjs")
 const { signPayload } = require("../helpers/jwt")
 const {User} = require("../models")
+const { OAuth2Client } = require("google-auth-library");
+const clientId = process.env.GOOGLE_CLIENT_ID;
+const client = new OAuth2Client(clientId);
 
 
 class ControllerUser{
@@ -39,6 +42,39 @@ class ControllerUser{
         } catch (error) {
             next(error)
         }
+    }
+    static async googleLogin(req, res, next) {
+        try {
+            const { google_token } = req.headers;
+            // console.log(google_token, "<<<<<<<");
+      
+            const ticket = await client.verifyIdToken({
+              idToken: google_token,
+              audience: clientId, // Specify the CLIENT_ID of the app that accesses the backend
+              // Or, if multiple clients access the backend:
+              //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+            });
+            // console.log(ticket, '===== ini tiket')
+            const payload = ticket.getPayload();
+            const [user, created] = await User.findOrCreate({
+              where: { email: payload.email },
+              defaults: {
+                email: payload.email,
+                username: payload.given_name,
+                password: "asd123",
+              },
+              hooks: false,
+            });
+            const access_token = signPayload({ id: user.id });
+            const username = user.username;
+            // const id = user.id;
+            const email = user.email
+            res.status(200).json({ access_token, username, email });
+          } catch (error) {
+            console.log(error);
+            res.status(500).json({ error });
+          }
+        
     }
 }
 
