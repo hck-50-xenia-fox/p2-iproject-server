@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adibwafi/p2-iproject-server-1/issues" 
+    "url": "https://github.com/adibwafi/p2-iproject-server-1/issues"
   },
   "homepage": "https://github.com/adibwafi/p2-iproject-server-1#readme",
   "dependencies": {
@@ -29,6 +29,7 @@
     "jest": "^29.1.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
+    "nodemailer": "^6.8.0",
     "pg": "^8.8.0",
     "sequelize": "^6.25.0",
     "supertest": "^6.3.0"

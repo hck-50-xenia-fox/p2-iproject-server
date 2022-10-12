@@ -163,6 +163,9 @@ class ControllerMotorcycle {
     try {
       let { id } = req.params;
       let findMotorcycle = await Motorcycle.findOne({ _id: id });
+      if(!findMotorcycle) {
+        throw { name: 'DATA_NOT_FOUND' }
+      }
       await findMotorcycle.updateOne({ status: "Available" });
       res.status(200).json({
         message: `Motorcycle rented successfully`,
@@ -176,6 +179,9 @@ class ControllerMotorcycle {
     try {
       let { id } = req.params
       let findMotorcycle = await Motorcycle.findOne({ _id: id })
+      if(!findMotorcycle) {
+        throw { name: 'DATA_NOT_FOUND' }
+      }
       res.status(200).json(findMotorcycle)
     }
     catch (err) {

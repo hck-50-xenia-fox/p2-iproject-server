@@ -11,14 +11,11 @@ const errorhandler = async (err, req, res, next) => {
         message: errorList[0]
     });
     } else if (
-        err.name === "PRODUCT_NOT_FOUND" ||
         err.name === `SequelizeDatabaseError` ||
-        err.name === "CATEGORY_NOT_FOUND" ||
-        err.name === "HISTORY_NOT_FOUND" ||
-        err.name === "SequelizeForeignKeyConstraintError"
+        err.name === "SequelizeForeignKeyConstraintError" ||
+        err.name === `DATA_NOT_FOUND`
     ) {
     res.status(404).json({
-        statuscode: 404,
         error: `Data not found`,
     });
     } else if (err.name === `EMAIL_IS_REQUIRED`) {
@@ -29,14 +26,16 @@ const errorhandler = async (err, req, res, next) => {
         res.status(400).json({
             error: `Password is required`
         })
+    } else if (err._message === `users validation failed`) {
+        res.status(400).json({
+            error: `Email is already in use`
+        })
     } else if (err.name === "UNAUTHORIZED" || err.name === "JsonWebTokenError") {
         res.status(401).json({
-            statuscode: 401,
             error: "Invalid Token",
         });
     } else if (err.name === "INVALID_CREDENTIAL") {
         res.status(401).json({
-            statuscode: 401,
             error: `User not found/password not matched`,
         });
     } else if (err.name === "FORBIDDEN") {
