@@ -1,6 +1,7 @@
 const { Employee, EmployeeTask, Task, Manager } = require("../models");
 const { comparePassword } = require("../helpers/encrypt");
 const { signToken } = require("../helpers/jwt");
+const axios = require("axios");
 class EmployeeController {
   static async register(req, res, next) {
     try {
@@ -79,6 +80,22 @@ class EmployeeController {
         status: "Completed",
       });
       res.status(200).json({ message: "Successfully Assign task!" });
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getMeme(req, res, next) {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "https://programming-memes-images.p.rapidapi.com/v1/memes",
+        headers: {
+          "X-RapidAPI-Key":
+            "e43e110b70msh3ec1e2d38d14bd2p1661cbjsn0484a3490ad6",
+          "X-RapidAPI-Host": "programming-memes-images.p.rapidapi.com",
+        },
+      });
+      res.status(200).json(data);
     } catch (error) {
       next(error);
     }
