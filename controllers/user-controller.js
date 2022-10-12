@@ -25,7 +25,7 @@ class UserController {
 
       res.status(200).json({
         access_token,
-        UserId: findUser.id,
+        userId: findUser.id,
         role: findUser.role,
         name: findUser.name,
       });
