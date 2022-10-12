@@ -3,9 +3,10 @@ const router = express.Router();
 const auth = require("../middlewares/auth");
 
 const userRouter = require("./users");
+const apiRouter = require("./apis");
 
 router.use("/", userRouter);
 router.use(auth);
-// get data live football
+router.use("/football", apiRouter);
 
 module.exports = router;
