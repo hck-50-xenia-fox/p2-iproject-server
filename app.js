@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/restaurant", Controller.getRestaurantData);
+app.get("/food", Controller.showAllItem);
+app.get("/restaurant/:id", Controller.showTheRestaurant);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

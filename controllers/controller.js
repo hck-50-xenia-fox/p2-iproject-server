@@ -31,6 +31,7 @@ class Controller {
       next(err);
     }
   }
+
   static async signIn(req, res, next) {
     try {
       const { email, password } = req.body;
@@ -49,6 +50,7 @@ class Controller {
       next(err);
     }
   }
+
   static async signInWithGoogle(req, res, next) {
     try {
       const client = new OAuth2Client(process.env.googleClientId);
@@ -79,10 +81,25 @@ class Controller {
     }
   }
 
+  static async showAllItem(req, res, next) {
+    try {
+      let food = await Item.findAll({
+        order: [["createdAt", "DESC"]],
+      });
+      if (!food) throw { name: "Not Found" };
+      res.status(200).json(food);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async getRestaurantData(req, res, next) {
     try {
+      let { place } = req.query;
+      if (place === "undefined" || !place) place = "NYC";
       let { data } = await axios.get(
-        "https://api.yelp.com/v3/businesses/search?term=restaurant&location=Hollywood",
+        "https://api.yelp.com/v3/businesses/search?term=restaurant&location=" +
+          place,
         {
           headers: {
             authorization: `Bearer ${process.env.yelpApiKey}`,
@@ -90,6 +107,36 @@ class Controller {
         }
       );
       res.status(200).json(data.businesses);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async showTheRestaurant(req, res, next) {
+    try {
+      let { data } = await axios.get(
+        `https://api.yelp.com/v3/businesses/${req.params.id}`,
+        {
+          headers: {
+            authorization: `Bearer ${process.env.yelpApiKey}`,
+          },
+        }
+      );
+      res.status(200).json(data);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async addPaymentUser(req, res, next) {
+    try {
+      const { itemId } = req.body;
+      let isEmpty = await Payment.findOne({
+        where: { FoodId, UserId: req.user.id },
+      });
+      if (isEmpty) throw { name: "favoriteExist" };
+      await Payment.create({ FoodId, UserId: req.user.id });
+      res.status(201).json({ message: "Added to card successfully" });
     } catch (err) {
       next(err);
     }

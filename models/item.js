@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Item.init(
     {
       CategoryId: DataTypes.INTEGER,
+      imageUrl: DataTypes.STRING,
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
