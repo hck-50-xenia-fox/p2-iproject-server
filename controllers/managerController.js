@@ -108,6 +108,8 @@ class ManagerController {
       if (!findEmployee) {
         throw { name: "Data not found" };
       }
+      await Employee.destroy({ where: { id: employeeId } });
+      res.status(200).json({ message: "Success fired employee" });
     } catch (error) {
       next(error);
     }

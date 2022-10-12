@@ -7,7 +7,8 @@ async function managerAuthorize(req, res, next) {
     if (!findEmployee) {
       throw { name: "Data not found" };
     }
-    if (!req.manager.id !== findEmployee.ManagerId) {
+    console.log(req.manager.id, findEmployee.ManagerId);
+    if (req.manager.id !== findEmployee.ManagerId) {
       throw { name: "Forbidden" };
     }
     next();
