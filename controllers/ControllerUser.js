@@ -1,13 +1,14 @@
 const express = require("express");
-const axios = require('axios')
+const axios = require("axios");
 const User = require("../models/user");
+require("dotenv").config();
 const {
   encryptPassword,
   comparePassword,
   signToken,
   verifyToken,
 } = require("../helpers/helper");
-const emailSender = require('../helpers/sendEmail')
+const emailSender = require("../helpers/sendEmail");
 
 class ControllerUser {
   static async register(req, res, next) {
@@ -16,12 +17,11 @@ class ControllerUser {
         url: `https://spott.p.rapidapi.com/places/ip/me`,
         method: "GET",
         headers: {
-          "X-RapidAPI-Key":
-            "7e395b7ab8msh4ecbfdd9d3bdfcbp151804jsn9e6084e31423",
-          "X-RapidAPI-Host": "spott.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_LOCATION,
+          "X-RapidAPI-Host": process.env.HOST_LOCATION,
         },
       });
-      let location = data.data.name
+      let location = data.data.name;
       let user = await User.create({
         email: req.body.email,
         password: req.body.password,
@@ -29,14 +29,14 @@ class ControllerUser {
         phoneNumber: req.body.phoneNumber,
         address: location,
       });
-      emailSender(user)
+      emailSender(user);
       res.status(201).json({
         message: "User was registered successfully!",
         name: user.name,
         email: user.email,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -69,7 +69,7 @@ class ControllerUser {
         name: findUser.name,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 }

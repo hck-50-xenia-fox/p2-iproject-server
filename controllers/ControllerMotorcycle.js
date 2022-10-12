@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const Motorcycle = require("../models/motorcycle");
+require("dotenv").config();
 
 const baseURLMotor = "https://motorcycle-specs-database.p.rapidapi.com/make";
 
@@ -9,9 +10,8 @@ class ControllerMotorcycle {
     try {
       let data = await axios.get(`${baseURLMotor}/Honda/model/ADV150`, {
         headers: {
-          "X-RapidAPI-Key":
-            "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-          "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_MOTOR,
+          "X-RapidAPI-Host": process.env.HOST_MOTOR,
         },
       });
       res.status(200).json({
@@ -30,9 +30,8 @@ class ControllerMotorcycle {
     try {
       let data = await axios.get(`${baseURLMotor}/Honda/model/PCX150`, {
         headers: {
-          "X-RapidAPI-Key":
-            "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-          "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_MOTOR,
+          "X-RapidAPI-Host": process.env.HOST_MOTOR,
         },
       });
       res.status(200).json({
@@ -51,9 +50,8 @@ class ControllerMotorcycle {
     try {
       let data = await axios.get(`${baseURLMotor}/Honda/model/Scoopy%20110`, {
         headers: {
-          "X-RapidAPI-Key":
-            "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-          "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_MOTOR,
+          "X-RapidAPI-Host": process.env.HOST_MOTOR,
         },
       });
       res.status(200).json({
@@ -72,9 +70,8 @@ class ControllerMotorcycle {
     try {
       let data = await axios.get(`${baseURLMotor}/Yamaha/model/NMAX%20155`, {
         headers: {
-          "X-RapidAPI-Key":
-            "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-          "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_MOTOR,
+          "X-RapidAPI-Host": process.env.HOST_MOTOR,
         },
       });
       res.status(200).json({
@@ -93,9 +90,8 @@ class ControllerMotorcycle {
     try {
       let data = await axios.get(`${baseURLMotor}/Yamaha/model/XMAX%20300`, {
         headers: {
-          "X-RapidAPI-Key":
-            "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-          "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+          "X-RapidAPI-Key": process.env.KEY_MOTOR,
+          "X-RapidAPI-Host": process.env.HOST_MOTOR,
         },
       });
       res.status(200).json({
@@ -116,9 +112,8 @@ class ControllerMotorcycle {
         `${baseURLMotor}/Vespa/model/Primavera%20150`,
         {
           headers: {
-            "X-RapidAPI-Key":
-              "8a6f25d790mshfceb2d850ae5493p125d64jsn500abf72ddcf",
-            "X-RapidAPI-Host": "motorcycle-specs-database.p.rapidapi.com",
+            "X-RapidAPI-Key": process.env.KEY_MOTOR,
+            "X-RapidAPI-Host": process.env.HOST_MOTOR,
           },
         }
       );
@@ -163,8 +158,8 @@ class ControllerMotorcycle {
     try {
       let { id } = req.params;
       let findMotorcycle = await Motorcycle.findOne({ _id: id });
-      if(!findMotorcycle) {
-        throw { name: 'DATA_NOT_FOUND' }
+      if (!findMotorcycle) {
+        throw { name: "DATA_NOT_FOUND" };
       }
       await findMotorcycle.updateOne({ status: "Available" });
       res.status(200).json({
@@ -177,15 +172,14 @@ class ControllerMotorcycle {
 
   static async getMotorcycleById(req, res, next) {
     try {
-      let { id } = req.params
-      let findMotorcycle = await Motorcycle.findOne({ _id: id })
-      if(!findMotorcycle) {
-        throw { name: 'DATA_NOT_FOUND' }
+      let { id } = req.params;
+      let findMotorcycle = await Motorcycle.findOne({ _id: id });
+      if (!findMotorcycle) {
+        throw { name: "DATA_NOT_FOUND" };
       }
-      res.status(200).json(findMotorcycle)
-    }
-    catch (err) {
-      next(err)
+      res.status(200).json(findMotorcycle);
+    } catch (err) {
+      next(err);
     }
   }
 }
