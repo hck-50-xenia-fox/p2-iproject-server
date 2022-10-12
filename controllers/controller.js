@@ -100,7 +100,7 @@ class Controller {
     }
   }
 
-  static NearbySearch = async (req, res, next) => {
+  static async NearbySearch (req, res, next) {
     try {
       const { lat, lng } = req.query;
       const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.GAPI_KEY}`;
