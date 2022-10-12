@@ -9,7 +9,11 @@ class Controller {
     // console.log(req.body);
     try {
       const { email, password } = req.body;
-        console.log(password);
+      if (!email||!password) {
+        throw {
+          name: "Invalid email or pass",
+        };
+      }  
       const data = await User.findOne({
         where: {
           email,
@@ -39,6 +43,7 @@ class Controller {
       const aksesToken = loadToToken(payload);
       res.status(200).json({
         access_token: aksesToken,
+        username: oneUser.username,
       });
     } catch (error) {
         console.log(error);
@@ -70,6 +75,7 @@ class Controller {
       });
       // console.log(ticket);
       const payload = ticket.getPayload();
+      
       const [user, created] = await User.findOrCreate({
         where: {
           email: payload.email,
@@ -82,11 +88,13 @@ class Controller {
         hooks: false,
       });
       
-      let id = user.id;
       const access_token = loadToToken({
         id: user.id,
       });
-      res.status(200).json({ access_token});
+      res.status(200).json({ 
+        access_token,
+        username:user.username
+       });
     } catch (error) {
       console.log(error);
       next(error);
