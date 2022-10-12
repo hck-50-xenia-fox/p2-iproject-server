@@ -6,6 +6,8 @@ const router = express.Router();
 const UserRouter = require("./user");
 const InventoryRouter = require("./inventory");
 const InvoiceRouter = require("./invoice");
+const historyRouter = require("./history");
+
 router.use(UserRouter);
 router.use(Authentication);
 router.get("/", (req, res) => {
@@ -13,6 +15,7 @@ router.get("/", (req, res) => {
 });
 router.use("/stock", InventoryRouter);
 router.use("/invoice", InvoiceRouter);
+router.use("/history", historyRouter);
 
 router.use(errorHandler);
 module.exports = router;

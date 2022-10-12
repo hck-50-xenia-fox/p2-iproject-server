@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
-let { Inventory, History, Invoice } = require("../models");
+let easyinvoice = require("easyinvoice");
+let { Inventory, History, Invoice, User } = require("../models");
 
 class InvoiceController {
   static async getAllInvoice(req, res, next) {
@@ -8,6 +9,9 @@ class InvoiceController {
       let data = await Invoice.findAll({
         where: {
           UserId,
+        },
+        include: {
+          model: Inventory,
         },
       });
       res.status(200).json(data);
@@ -113,6 +117,48 @@ class InvoiceController {
       let message = `Sale ${findInventory.productName} to ${findInvoice.customerName} with Invoice Id ${id} success DELETE`;
       res.status(200).json({ message });
     } catch (error) {
+      next(error);
+    }
+  }
+  static async generateInvoice(req, res, next) {
+    // console.log(req.params);
+    try {
+      let UserId = req.user.id;
+      let id = req.params.id;
+
+      let seller = await User.findByPk(UserId);
+      let findInvoice = await Invoice.findByPk(id, {
+        include: {
+          model: Inventory,
+        },
+      });
+      let updatedDate = findInvoice.updatedAt.toISOString().slice(0, 10);
+      let productData = [
+        {
+          quantity: findInvoice.quantity,
+          description: findInvoice.Inventory.productName,
+          "tax-rate": 11,
+          price: findInvoice.priceToSale,
+        },
+      ];
+      let senderData = {
+        company: seller.companyName,
+        address: seller.address,
+      };
+      let clientData = {
+        company: findInvoice.customerName,
+        address: findInvoice.customerAddress,
+      };
+      let informationData = {
+        number: findInvoice.rev,
+        date: updatedDate,
+      };
+
+      res
+        .status(200)
+        .json({ productData, senderData, clientData, informationData });
+    } catch (error) {
+      console.log(error);
       next(error);
     }
   }
