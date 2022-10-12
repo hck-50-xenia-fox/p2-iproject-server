@@ -21,7 +21,7 @@ class ControllerUser {
           "X-RapidAPI-Host": "spott.p.rapidapi.com",
         },
       });
-      let location = data.data.adminDivision1.name
+      let location = data.data.name
       let user = await User.create({
         email: req.body.email,
         password: req.body.password,
