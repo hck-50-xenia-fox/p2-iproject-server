@@ -22,7 +22,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -43,7 +43,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -64,7 +64,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -85,7 +85,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -106,7 +106,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -130,7 +130,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -142,10 +142,21 @@ class ControllerMotorcycle {
         imageUrl: req.body.imageUrl,
         transmission: req.body.transmission,
         fuel: req.body.fuel,
+        price: req.body.price,
       });
       res.status(201).json(motorcycle);
     } catch (err) {
-      console.log(err);
+      next(err)
+    }
+  }
+
+  static async getMotorcycles(req, res, next) {
+    try {
+      let motorcycles = await Motorcycle.find()
+      res.status(200).json(motorcycles)
+    }
+    catch (err) {
+      next(err)
     }
   }
 }

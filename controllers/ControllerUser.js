@@ -26,7 +26,7 @@ class ControllerUser {
         email: user.email,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 
@@ -56,10 +56,10 @@ class ControllerUser {
       const access_token = signPayload(payload);
       res.status(200).json({
         access_token,
-        name: findUser.name
+        name: findUser.name,
       });
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   }
 }

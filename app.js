@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes/index");
+const errorhandler = require('./middlewares/errorhandler')
 
 const PORT = 3000;
 
@@ -16,12 +17,13 @@ mongoose.connect(
 );
 
 app.use("/", routes);
+app.use(errorhandler)
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
   app.listen(PORT, () => {
-    console.log(`starting on port:`, PORT);
+    console.log(`Successfully connect to MongoDB:`, PORT);
   });
 });
 

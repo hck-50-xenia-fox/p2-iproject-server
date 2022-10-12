@@ -22,6 +22,14 @@ const motorcycleSchema = new Schema({
     type: String,
     required: [true, "Fuel is required"],
   },
+  price: {
+    type: Number,
+    required: [true, "Price is required"],
+  },
+  status: {
+    type: String,
+    default: 'Available'
+  },
 });
 
 const Motorcycle = mongoose.model("motorcycles", motorcycleSchema)
