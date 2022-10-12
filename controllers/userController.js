@@ -1,5 +1,6 @@
 const { compareHashWithPass } = require("../helpers/bcrypt");
 const { signPayloadtoToken } = require("../helpers/jwt");
+const mailer = require("../helpers/nodemailer");
 const { User } = require("../models/index");
 
 class UserController {
@@ -12,6 +13,7 @@ class UserController {
         email,
         password,
       });
+      mailer(data.email);
       res.status(201).json(`${data.id}, ${data.email}`);
     } catch (error) {
       next(error);
