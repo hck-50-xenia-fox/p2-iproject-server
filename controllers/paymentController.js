@@ -1,17 +1,18 @@
 class paymentController {
   static snapPayment(req, res, next) {
     let userId = req.user.id;
+    const { price } = req.body;
     console.log(req.user.email);
     const midtransClient = require('midtrans-client');
     let snap = new midtransClient.Snap({
       isProduction: false,
       serverKey: 'SB-Mid-server-WXo6rZyzGRJP9ga6U3HauDD4',
     });
-    let code = Math.floor(Math.random() * 1000)
+    let code = Math.floor(Math.random() * 1000);
     let parameter = {
       transaction_details: {
         order_id: `Petshop-${code}`,
-        gross_amount: 50000,
+        gross_amount: price,
       },
       credit_card: {
         secure: true,
@@ -34,4 +35,4 @@ class paymentController {
   }
 }
 
-module.exports = paymentController
+module.exports = paymentController;

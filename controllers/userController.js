@@ -23,6 +23,7 @@ class UserController{
               const payload = {
                 id: findUser.id,
                 username: findUser.username,
+                role: findUser.role
               };
               const access_token = signPayloadToToken(payload);
               res.status(200).json({ access_token, dataUser: payload });
@@ -39,7 +40,7 @@ class UserController{
             username,
             email,
             password,
-            role : "Admin",
+            role : "Customer",
             phoneNumber,
             address,
           });
