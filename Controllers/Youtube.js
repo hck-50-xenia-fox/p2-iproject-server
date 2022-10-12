@@ -1,5 +1,4 @@
 let axios = require("axios");
-const e = require("cors");
 
 class Controller {
   static async getTrailerMovie(req, res, next) {
@@ -247,7 +246,6 @@ class Controller {
       });
       res.status(200).json(response);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
