@@ -79,6 +79,37 @@ class Controller {
       next(error);
     }
   }
+  static async payment(req, res, next) {
+    try {
+      const midtransClient = require("midtrans-client");
+      let snap = new midtransClient.Snap({
+        isProduction: false,
+        serverKey: process.env.SERVER_KEY,
+      });
+      const order = Math.random() * 100;
+      let parameter = {
+        transaction_details: {
+          order_id: `your transaction ${order}`,
+          gross_amount: 10000,
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          username: `${req.user.username}`,
+          email: `${req.user.email}`,
+        },
+      };
+
+      snap.createTransaction(parameter).then((transaction) => {
+        let transactionToken = transaction.token;
+        console.log("transactionToken:", transactionToken);
+      });
+      res.status(201).json({ transactionToken: transactionToken });
+    } catch (error) {
+      next(error);
+    }
+  }
   // ini ganti baca semua data biasa aja, tampilin cardnya aja
   static async showAllCourse(req, res, next) {
     try {
