@@ -1,4 +1,4 @@
-  Hacktiv Course API Documentation
+ Hacktiv Course API Documentation
 
 ### Deployed server
 
