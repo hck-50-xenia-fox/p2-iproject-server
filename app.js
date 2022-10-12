@@ -7,6 +7,15 @@ const errorHandler = require('./middlewares/ErrorHandler')
 const app = express()
 const PORT = 3000
 const routes = require('./routes')
+const {Server} =  require("socket.io")
+const http = require('http')
+const server = http.createServer(app)
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
+    }
+})
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
@@ -18,6 +27,16 @@ app.use(errorHandler)
 //     res.send('Uji Coba Hello World!')
 //   })
 
-app.listen(PORT, () => {
+io.on('connection', (socket) => {
+    console.log(`user ${socket.id} enter the chatroom`)
+    socket.on('message', data => {
+        socket.broadcast.emit('message:received', data)
+    })
+    socket.on('disconnect', () => {
+        console.log(`user ${socket.id} left the chatroom`)
+    })
+})
+
+server.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })

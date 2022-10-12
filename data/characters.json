@@ -2,43 +2,43 @@
     {
         "name": "Lyria",
         "element": "Elementless",
-        "imageUrl": "https://gbf.wiki/Lyria_(Event)#/media/File:Npc_zoom_3030182000_02.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3030182000_Lyria_(Event)/3030182000_Lyria_(Event)_02_zoom.png",
         "description": "The young girl who could only sit by and watch her friends has awoken. She is no longer the protected, but the protector. Her heart calls forth grand miracles to the azure skies."
     },
     {
         "name": "Katalina",
         "element": "Water",
-        "imageUrl": "https://gbf.wiki/Katalina_(Promo)#/media/File:Npc_zoom_3040118000_02.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040118000_Katalina_(Promo)/3040118000_Katalina_(Promo)_02_zoom.png",
         "description": "This knight has left the Empire behind her, and now stands opposed to everything she once stood for. Bidding farewell to former allies, she dons the armor of her new role—knight protector. She raises her face to the sky, and swears that she will show her charge that great wide world."
     },
     {
         "name": "Rackam",
         "element": "Fire",
-        "imageUrl": "https://gbf.wiki/Rackam#/media/File:Npc_zoom_3030008000_03.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3030008000_Rackam/3030008000_Rackam_03_zoom.png",
         "description": "The hotshot helmsman girds himself in a new suit of armor as he prepares to guide the young skyfarers on the next leg of their journey. No one loves the ship more than he, and no one is more resolute in their determination to protect their friends."
     },
     {
         "name": "Eugene",
         "element": "Earth",
-        "imageUrl": "https://gbf.wiki/Eugen_(Grand)#/media/File:Npc_zoom_3040077000_03.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040077000_Eugen_(Grand)/3040077000_Eugen_(Grand)_02_zoom.png",
         "description": "This crafty musketeer finally shares the regret he's kept to himself all these years. The very girl intertwined with all this would feel indignant for her mother. Yet he continues to wait in high hopes."
     },
     {
         "name": "Rosetta",
         "element": "Wind",
-        "imageUrl": "https://gbf.wiki/Rosetta#/media/File:Npc_zoom_3030010000_02.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040068000_Rosetta_(Grand)/3040068000_Rosetta_(Grand)_01_zoom.png",
         "description": "Rosetta hides the world's lies, as if covering a scent with perfume. Those in her vicinity may get hints as to the truth, but she herself will never tell, instead saying she hopes for a miracle, like any other person."
     },
     {
         "name": "Vira",
         "element": "Light",
-        "imageUrl": "https://gbf.wiki/Vira_(Grand)#/media/File:Npc_zoom_3040141000_03.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040141000_Vira_(Grand)/3040141000_Vira_(Grand)_02_zoom.png",
         "description": "The knight of the primal beasts has returned to Vira's side to grant her even greater power, drawn as it was to her dark, burning passions. Crazed by her obsession, she uses her primal energies to cut down all who dare approach the object of her affection."
     },
     {
         "name": "Orchid",
         "element": "Dark",
-        "imageUrl": "https://gbf.wiki/Orchid#/media/File:Npc_zoom_3040111000_03.png",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040111000_Orchid/3040111000_Orchid_03_zoom.png",
         "description": "A being that never expected to be, Orchid was given life by pure miracle and has questioned why ever since. On her quest for answers, she continues alone through the skies, vowing to one day reunite with those most dear to her."
     }
 ]
