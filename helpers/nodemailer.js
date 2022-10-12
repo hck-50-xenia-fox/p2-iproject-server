@@ -19,14 +19,14 @@ function mailer(data) {
     from: "tahu.telor.404@gmail.com",
     to: data,
     subject: "Congratulations",
-    text: "Welcome Brother",
+    text: "Welcome Brother, enjoy our service and information about football match and highlight video",
   };
 
   mailTransport.sendMail(detail, (err) => {
     if (err) {
       console.log(`Something went wrong!`, err);
     } else {
-      console.log("success");
+      console.log("success sending email");
     }
   });
 }
