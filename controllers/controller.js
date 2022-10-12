@@ -100,6 +100,27 @@ class Controller {
       next(error);
     }
 
+  }
+
+  static NearbySearch = async (req, res, next) => {
+    try {
+        const {lat, lng} = req.query
+        const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.GAPI_KEY}`
+        const response = await axios.get(url)
+        const data = response.data.results.map((el, id) => {
+            return {
+                id: id + 1,
+                location: el.geometry.location,
+                name: el.name, 
+                rating: el.rating, 
+                address: el.vicinity,
+                photos:el.photos
+            }
+        })
+        res.status(200).json(data)
+    } catch (err) {
+        next(err)
+    }
 }
 }
 
