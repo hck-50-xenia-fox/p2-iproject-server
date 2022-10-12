@@ -1,0 +1,8 @@
+module.exports = {
+    'env': 'development'
+}
+
+// CHOOSE :
+// production
+// development
+// test
