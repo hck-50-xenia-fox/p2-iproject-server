@@ -7,7 +7,7 @@ const {
     verifyToken,
 } = require("../helpers/helper");
 
-const User = new Schema({
+const userSchema = new Schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
@@ -52,10 +52,10 @@ const User = new Schema({
     }
 })
 
-User.pre('save', function(nex) {
+userSchema.pre('save', function(next) {
     this.password = encryptPassword(this.password)
     next()
 })
 
-export default mongoose.model('Users', User)
+const User = mongoose.model('users', userSchema)
 module.exports = User

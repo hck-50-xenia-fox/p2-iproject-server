@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 mongoose.connect(
-  "mongodb+srv://adibwafi:Aksesbebas123@sewamotor.38vyhzk.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://adibwafi:Aksesbebas123@sewamotor.38vyhzk.mongodb.net/SewaMotor?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
