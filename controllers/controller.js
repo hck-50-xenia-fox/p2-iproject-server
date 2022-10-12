@@ -1,4 +1,4 @@
-const { compare } = require('../helpers/bcyrpt');
+const { compare } = require("../helpers/bcyrpt");
 const { loadToToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
 const { OAuth2Client } = require("google-auth-library");
@@ -9,19 +9,18 @@ class Controller {
     // console.log(req.body);
     try {
       const { email, password } = req.body;
-      if (!email||!password) {
+      if (!email || !password) {
         throw {
           name: "Invalid email or pass",
         };
-      }  
+      }
       const data = await User.findOne({
         where: {
           email,
         },
       });
 
-      let oneUser = data.dataValues
-      
+      let oneUser = data.dataValues;
 
       if (!oneUser) {
         throw {
@@ -46,7 +45,7 @@ class Controller {
         username: oneUser.username,
       });
     } catch (error) {
-        console.log(error);
+      console.log(error);
       next(error);
     }
   }
@@ -71,11 +70,11 @@ class Controller {
     try {
       const ticket = await client.verifyIdToken({
         idToken: req.headers.google_token,
-        audience: process.env.GOOGLE_API_KEY
+        audience: process.env.GOOGLE_API_KEY,
       });
       // console.log(ticket);
       const payload = ticket.getPayload();
-      
+
       const [user, created] = await User.findOrCreate({
         where: {
           email: payload.email,
@@ -87,41 +86,40 @@ class Controller {
         },
         hooks: false,
       });
-      
+
       const access_token = loadToToken({
         id: user.id,
       });
-      res.status(200).json({ 
+      res.status(200).json({
         access_token,
-        username:user.username
-       });
+        username: user.username,
+      });
     } catch (error) {
       console.log(error);
       next(error);
     }
-
   }
 
   static NearbySearch = async (req, res, next) => {
     try {
-        const {lat, lng} = req.query
-        const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.GAPI_KEY}`
-        const response = await axios.get(url)
-        const data = response.data.results.map((el, id) => {
-            return {
-                id: id + 1,
-                location: el.geometry.location,
-                name: el.name, 
-                rating: el.rating, 
-                address: el.vicinity,
-                photos:el.photos
-            }
-        })
-        res.status(200).json(data)
+      const { lat, lng } = req.query;
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.GAPI_KEY}`;
+      const response = await axios.get(url);
+      const data = response.data.results.map((el, id) => {
+        return {
+          id: id + 1,
+          location: el.geometry.location,
+          name: el.name,
+          rating: el.rating,
+          address: el.vicinity,
+          photos: el.photos,
+        };
+      });
+      res.status(200).json(data);
     } catch (err) {
-        next(err)
+      next(err);
     }
-}
+  };
 }
 
 module.exports = Controller;
