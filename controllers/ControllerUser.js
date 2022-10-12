@@ -8,29 +8,34 @@ const {
 } = require("../helpers/helper");
 
 class ControllerUser {
-  static register(req, res, next) {
-    User.create({
-      email: req.body.email,
-      password: req.body.password,
-      name: req.body.name,
-      phoneNumber: req.body.phoneNumber,
-      address: req.body.address,
-    })
-      .then((created) => {
-        res.status(201).json(created);
-      })
-      .catch((err) => {
-        console.log(err);
+  static async register(req, res, next) {
+    try {
+      let user = await User.create({
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.name,
+        phoneNumber: req.body.phoneNumber,
+        address: req.body.address,
       });
+      res.status(201).json({
+        message: "User was registered successfully!",
+        name: user.name,
+        email: user.email,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  static login(req, res, next) {
-    User.find()
-      .then((users) => {
-        res.status(200).json(users);
-      })
-      .catch(console.log);
-  }
+static async login(req, res, next) {
+    try {
+        let { email, password } = req.body
+        
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
 }
 
 module.exports = ControllerUser;

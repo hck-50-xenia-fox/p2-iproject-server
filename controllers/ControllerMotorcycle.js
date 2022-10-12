@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const Motorcycle = require("../models/motorcycle");
 
 const baseURLMotor = "https://motorcycle-specs-database.p.rapidapi.com/make";
 
@@ -128,6 +129,21 @@ class ControllerMotorcycle {
         transmission: data.data[0].engineAndTransmission.gearboxName,
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async addMotorcycle(req, res, next) {
+    try {
+      let motorcycle = await Motorcycle.create({
+        brand: req.body.brand,
+        model: req.body.model,
+        imageUrl: req.body.imageUrl,
+        transmission: req.body.transmission,
+        fuel: req.body.fuel,
+      });
+      res.status(201).json(motorcycle);
     } catch (err) {
       console.log(err);
     }
