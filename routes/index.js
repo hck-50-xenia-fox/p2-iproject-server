@@ -8,6 +8,7 @@ router.post('/register', indexController.register);
 router.post('/login', indexController.login);
 
 router.use(authentication)
+router.post('/register', indexController.updateProfile)
 router.use('/pokemons', pokemonRouter)
 
 module.exports = router

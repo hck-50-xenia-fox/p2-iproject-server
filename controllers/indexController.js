@@ -71,6 +71,40 @@ class indexController {
             }
         }
     }
+
+    static async updateProfile (req, res, next) {
+        try {
+            const UserId = req.params.id
+            const { username, email, photo } = req.body
+
+            let user = await User.findByPk(UserId)
+
+            if (!user) {
+                throw {name: 'User not found'}
+            }
+
+            await User.update({
+                username,
+                email,
+                photo   
+            },{
+                where : {
+                    id : UserId
+                }
+            })
+
+            res.status(200).json({message: 'Your profile has been updated successfully'})
+
+        } catch (error) {
+            if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstrainError') {
+                res.status(400).json({message: error.errors[0].message})
+            } else if (error.name === 'User not found') {
+                res.status(404).json({message: "User's profile with this ID is registered"})
+            } else {
+                res.status(500).json({message: 'Internal Server Error'})
+            }
+        }
+    }
 }
 
 module.exports = indexController
