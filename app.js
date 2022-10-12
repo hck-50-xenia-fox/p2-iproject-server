@@ -13,14 +13,19 @@ app.use(express.json())
 
 app.post('/register',UserController.userRegister)
 app.post('/login',UserController.userLogin)
-app.post('/login-facebook',UserController.facebookLogin)
+// app.post('/login-facebook',UserController.facebookLogin)
 // app.get('/crypto/live',CryptoController.livePrice)
 app.get('/crypto', CryptoController.getCryptoData)
-app.get('/favorites',UserController.userFavorite)
-app.post('/favorites',UserController.newWishlist)
-app.delete('/favorites/:id',UserController.deleteWishlist)
 app.use(authUser)
+app.get('/exchange',CryptoController.exchangeRate)
+app.post('/premium',UserController.premiumUser)
+app.patch('/update-premium',UserController.updateStatus)
+app.get('/wishlist',UserController.userWishlisht)
+app.post('/wishlist',UserController.newWishlist)
+app.delete('/wishlist/:id',UserController.deleteWishlist)
 app.get('/news', CryptoController.getCryptoNews)
+
+
 app.use(errorHandlers)
 
 app.listen(port, () => {

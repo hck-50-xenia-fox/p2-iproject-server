@@ -36,12 +36,12 @@ class UserController {
         id: userLogin.id
       }
       const access_token = signToken(payload)
-      res.status(200).json({ access_token, status: userLogin.status })
+      res.status(200).json({ access_token, status: userLogin.status, id:userLogin.id })
     } catch (error) {
       next(error)
     }
   }
-  static async userFavorite(req, res, next) {
+  static async userWishlisht(req, res, next) {
     try {
       const { id } = req.user
       const userFavorite = await Wishlist.findAll({
@@ -76,27 +76,12 @@ class UserController {
       if (!availWishlist) {
         throw { name: 'Not_Found' }
       }
-      
-    } catch (error) {
-
-    }
-  }
-  // static async facebookLogin(req, res, next) {
-  //   try {
-
-  //   } catch (error) {
-
-  //   }
-  // }
-  static async wishListUser(req,res,next){
-    try {
-      const {id} = req.user
-      const userWishlist = await Wishlist.findAll({
+      await Wishlist.destroy({
         where : {
-          UserId : id
+          id
         }
       })
-      res.status(200).json(userWishlist)
+      res.status(200).json({message : 'Success Delete'})
     } catch (error) {
       next(error)
     }
@@ -127,13 +112,25 @@ class UserController {
     snap.createTransaction(parameter)
       .then((transaction) => {
         let transactionToken = transaction.token;
-        console.log('transactionToken:', transactionToken);
         //! trx token buat client
         res.status(201).json({ transactionToken: transactionToken })
       })
       .catch((err) => {
         next(err)
       })
+  }
+  static async updateStatus(req,res,next){
+    try {
+      const {id} = req.user
+       await User.update({status : 'Premium'},{
+        where : {
+          id
+        }
+      })
+      res.status(200).json({message : 'Success Update Status'})
+    } catch (error) {
+      next(error)
+    }
   }
 }
 

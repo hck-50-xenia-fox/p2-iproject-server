@@ -23,17 +23,28 @@ class CryptoController {
   }
   static async getCryptoNews(req, res, next) {
     try {
-      let { data } = await axios.get('https://crypto-news-live3.p.rapidapi.com/news', {}, {
+      let { data } = await axios.get('https://crypto-news-live3.p.rapidapi.com/news',{
         headers: {
           'X-RapidAPI-Key': '5e35749576msh5531e2bec4c5d41p109125jsn367e2de7d0e3',
           'X-RapidAPI-Host': 'crypto-news-live3.p.rapidapi.com'
         }
       })
+
+      data.splice(20,data.length)
       res.status(200).json(data)
     } catch (error) {
       console.log(error)
       next(error)
 
+    }
+  }
+  static async exchangeRate(req,res,next){
+    try {
+      const {amount} = req.query
+      const {data} = await axios.get(`https://api.exchangerate.host/convert?from=IDR&to=USD&amount=${amount}&places=2`)
+      res.status(200).json({result : data.result})
+    } catch (error) {
+      console.log(error);
     }
   }
 
