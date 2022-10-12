@@ -1,3 +1,5 @@
+
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const express = require('express')
 const cors = require('cors');
 const CryptoController = require('./controllers/cryptoController');
@@ -13,8 +15,6 @@ app.use(express.json())
 
 app.post('/register',UserController.userRegister)
 app.post('/login',UserController.userLogin)
-// app.post('/login-facebook',UserController.facebookLogin)
-// app.get('/crypto/live',CryptoController.livePrice)
 app.get('/crypto', CryptoController.getCryptoData)
 app.use(authUser)
 app.get('/exchange',CryptoController.exchangeRate)

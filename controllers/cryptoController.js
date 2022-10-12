@@ -25,8 +25,8 @@ class CryptoController {
     try {
       let { data } = await axios.get('https://crypto-news-live3.p.rapidapi.com/news',{
         headers: {
-          'X-RapidAPI-Key': '5e35749576msh5531e2bec4c5d41p109125jsn367e2de7d0e3',
-          'X-RapidAPI-Host': 'crypto-news-live3.p.rapidapi.com'
+          'X-RapidAPI-Key': process.env.X_RAPID_API_KEY,
+          'X-RapidAPI-Host': process.env.X_RAPID_API_HOST
         }
       })
 
@@ -47,32 +47,6 @@ class CryptoController {
       console.log(error);
     }
   }
-
-  // static async livePrice(req, res, next) {
-  //   try {
-  //     const webSocket = new WebSocket(`wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`);
-
-  //     const subMessage = {
-  //       "action": "SubAdd",
-  //       "subs": ["2~Binance~BTC~USDT"]
-  //     }
-  //     webSocket.onopen = (event) => {
-  //       console.log("Connected to server");
-  //       webSocket.send(JSON.stringify(subMessage))
-  //        webSocket.on("message", (message) => {
-  //         const messageObj = JSON.parse(message);
-  //         const price = messageObj.PRICE;
-  //         if (price) {
-  //           console.log(`Price BTC/USDT: ${price}`);
-  //           res.status(200).json(price)
-  //         }
-  //       });
-  //     };
-  //   } catch (error) {
-
-  //   }
-  // }
-
 }
 
 module.exports = CryptoController

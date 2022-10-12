@@ -1,6 +1,6 @@
 const { comparePassword, signToken } = require('../helpers/allHelper');
 const { User, Wishlist } = require('../models');
-
+ 
 
 class UserController {
   static async userRegister(req, res, next) {
@@ -92,7 +92,7 @@ class UserController {
     // Create Snap API instance
     let snap = new midtransClient.Snap({
       isProduction: false,
-      serverKey: 'SB-Mid-server-Q-5hHH0OgKqNO5y8JB5HPh6j'
+      serverKey: process.env.SERVER_KEY_MIDTRANS
     });
     let random =  Math.floor(Math.random()*1000)
     let parameter = {
