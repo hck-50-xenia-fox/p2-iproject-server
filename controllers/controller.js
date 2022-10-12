@@ -2,8 +2,9 @@ const { Op } = require("sequelize");
 const { User, Course, MyCourse } = require("../models");
 const { comparePassword } = require("../helpers/bcrypt");
 const { generateToken } = require("../helpers/jwt");
-const {nodemailer} = require('nodemailer')
-const {smtpTransport} = require('nodemailer-smtp-transport');
+const jwt = require("jsonwebtoken");
+const { nodemailer } = require("nodemailer");
+const { smtpTransport } = require("nodemailer-smtp-transport");
 
 class Controller {
   static async register(req, res, next) {
@@ -49,7 +50,36 @@ class Controller {
       next(error);
     }
   }
-// ini ganti baca semua data biasa aja, tampilin cardnya aja
+  static async loginFacebook(req, res, next) {
+    try {
+      const { access_token } = req.headers;
+      const payload = jwt.sign(access_token, process.env.SUPABASE_SECRET);
+      if (payload) {
+        const [loginUser, created] = await User.findOrCreate({
+          where: {
+            email: payload.user_metadata.email,
+            username: payload.user_metadata.email,
+          },
+          defaults: {
+            email: payload.user_metadata.email,
+            password: null,
+            username: payload.user_metadata.email,
+          },
+          skip: ["email", "password", "username"],
+          hooks: false,
+        });
+        const access_token = generateToken({
+          id: loginUser.id,
+        });
+        res.status(created ? 201 : 200).json({
+          access_token,
+        });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+  // ini ganti baca semua data biasa aja, tampilin cardnya aja
   static async showAllCourse(req, res, next) {
     try {
       const { search } = req.query;
