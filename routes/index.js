@@ -11,6 +11,6 @@ router.use('/login', loginRoute)
 router.use('/register', registerRoute)
 router.use("/home", homeRoute)
 router.use(authentication)
-router.use('/product', productRoute)
+router.use('/product', productRoute)    
 
 module.exports = router

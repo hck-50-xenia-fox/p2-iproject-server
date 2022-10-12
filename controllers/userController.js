@@ -2,6 +2,7 @@ const {User} = require('../models');
 const {compareHashPassword} = require('../helpers/bcrypt');
 const {signPayloadToToken} = require('../helpers/jwt');
 const axios = require('axios');
+const nodemailer = require('../helpers/nodemailer');
 
 class UserController{
     static async loginPost(req, res, next){
@@ -42,6 +43,7 @@ class UserController{
             phoneNumber,
             address,
           });
+          nodemailer(email)
           res.status(201).json(data);
         } catch (error) {
           next(error)
