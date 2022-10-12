@@ -13,6 +13,8 @@ app.use(express.json())
 
 app.post('/register',UserController.userRegister)
 app.post('/login',UserController.userLogin)
+app.post('/login-facebook',UserController.facebookLogin)
+// app.get('/crypto/live',CryptoController.livePrice)
 app.get('/crypto', CryptoController.getCryptoData)
 app.get('/favorites',UserController.userFavorite)
 app.post('/favorites',UserController.newWishlist)

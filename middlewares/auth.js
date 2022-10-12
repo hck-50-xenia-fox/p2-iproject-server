@@ -11,7 +11,9 @@ const authUser = async (req,res,next) =>{
       throw { name: "Invalid" }
     }
     req.user = {
-      id: userLogin.id
+      id: userLogin.id,
+      username : userLogin.username,
+      email : userLogin.email
     }
     next()
   } catch (error) {
