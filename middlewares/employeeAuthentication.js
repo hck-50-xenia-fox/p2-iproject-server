@@ -1,3 +1,4 @@
+const { verifyToken } = require("../helpers/jwt");
 const { Employee } = require("../models");
 
 async function employeeAuthentication(req, res, next) {
@@ -13,7 +14,7 @@ async function employeeAuthentication(req, res, next) {
     const findEmployee = await Employee.findOne({
       where: { email: verify.email },
     });
-    if (!findCompany) {
+    if (!findEmployee) {
       throw { name: "Not Login" };
     }
     req.employee = {

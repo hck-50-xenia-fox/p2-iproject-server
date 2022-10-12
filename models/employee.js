@@ -43,18 +43,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      experience: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Experience is required",
-          },
-          notEmpty: {
-            msg: "Experience is required",
-          },
-        },
-      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,

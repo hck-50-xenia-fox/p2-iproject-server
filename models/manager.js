@@ -94,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Manager.beforeCreate((el) => {
-    el.password = hashPassword(el, password);
+    el.password = hashPassword(el.password);
   });
   return Manager;
 };

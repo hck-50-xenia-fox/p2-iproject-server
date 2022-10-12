@@ -5,16 +5,17 @@ const { signToken } = require("../helpers/jwt");
 class ManagerController {
   static async register(req, res, next) {
     try {
-      const { firstName, lastName, role, email, password, CompanyId } =
-        req.body;
+      const { firstName, lastName, role, email, password } = req.body;
+      console.log(req.body);
       await Manager.create({
         firstName,
         lastName,
         role,
         email,
         password,
-        CompanyId,
+        CompanyId: req.company.id,
       });
+      console.log(req);
       res
         .status(201)
         .json({ message: "Success register manager email " + email });
@@ -34,16 +35,24 @@ class ManagerController {
       if (!findManager) {
         throw { name: "Invalid email or password" };
       }
-      const validate = comparePassword(password, findManager.companyPassword);
+      const validate = comparePassword(password, findManager.password);
       if (!validate) {
         throw { name: "Invalid email or password" };
       }
       const payload = {
         id: findManager.id,
-        ManagerEmail: findManager.email,
+        email: findManager.email,
       };
-      const { access_token } = signToken(payload);
+      const access_token = signToken(payload);
       res.status(200).json({ access_token });
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getTask(req, res, next) {
+    try {
+      const data = await Task.findAll();
+      res.status(200).json(data);
     } catch (error) {
       next(error);
     }
@@ -77,14 +86,14 @@ class ManagerController {
   static async getEmployee(req, res, next) {
     try {
       const data = await Employee.findAll({
+        include: {
+          model: Task,
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
         where: {
           ManagerId: req.manager.id,
-          include: {
-            model: EmployeeTask,
-            attributes: {
-              exclude: ["createdAt", "updatedAt"],
-            },
-          },
         },
       });
       res.status(200).json(data);

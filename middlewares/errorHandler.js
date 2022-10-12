@@ -1,6 +1,7 @@
 async function errorHandler(err, req, res, next) {
   let message;
   let code;
+  console.log(err);
   if (err.name === "SequelizeValidationError") {
     message = err.errors[0].message;
     code = 400;

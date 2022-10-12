@@ -1,18 +1,18 @@
-const { Employee, EmployeeTask } = require("../models");
+const { Employee, EmployeeTask, Task, Manager } = require("../models");
 const { comparePassword } = require("../helpers/encrypt");
 const { signToken } = require("../helpers/jwt");
 class EmployeeController {
   static async register(req, res, next) {
     try {
-      const { firstName, lastName, role, email, password, ManagerId } =
-        req.body;
+      const { firstName, lastName, role, email, password } = req.body;
       await Employee.create({
         firstName,
         lastName,
         role,
         email,
         password,
-        ManagerId,
+        ManagerId: req.manager.id,
+        CompanyId: req.manager.CompanyId,
       });
       res
         .status(201)
@@ -33,15 +33,15 @@ class EmployeeController {
       if (!findEmployee) {
         throw { name: "Invalid email or password" };
       }
-      const validate = comparePassword(password, findEmployee.companyPassword);
+      const validate = comparePassword(password, findEmployee.password);
       if (!validate) {
         throw { name: "Invalid email or password" };
       }
       const payload = {
         id: findEmployee.id,
-        employeeEmail: findEmployee.email,
+        email: findEmployee.email,
       };
-      const { access_token } = signToken(payload);
+      const access_token = signToken(payload);
       res.status(200).json({ access_token });
     } catch (error) {
       next(error);
@@ -50,13 +50,17 @@ class EmployeeController {
   static async getMyTask(req, res, next) {
     try {
       const data = await EmployeeTask.findAll({
+        include: {
+          model: Task,
+        },
         where: {
           EmployeeId: req.employee.id,
+          status: "Uncomplete",
         },
       });
       res.status(200).json(data);
     } catch (error) {
-      next(erorr);
+      next(error);
     }
   }
   static async updateTask(req, res, next) {

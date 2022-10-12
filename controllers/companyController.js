@@ -41,7 +41,7 @@ class CompanyController {
         id: findCompany.id,
         email: findCompany.companyEmail,
       };
-      const { access_token } = signToken(payload);
+      const access_token = signToken(payload);
       res.status(200).json({ access_token });
     } catch (error) {
       next(error);
@@ -70,11 +70,11 @@ class CompanyController {
       const data = await Manager.findAll({
         where: {
           CompanyId: req.company.id,
-          include: {
-            model: Employee,
-            attributes: {
-              exclude: ["createdAt", "updatedAt"],
-            },
+        },
+        include: {
+          model: Employee,
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
           },
         },
       });
