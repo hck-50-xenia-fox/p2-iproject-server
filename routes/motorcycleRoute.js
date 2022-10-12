@@ -10,5 +10,7 @@ router.get('/xmax300', ControllerMotorcycle.getXMAX )
 router.get('/primavera150', ControllerMotorcycle.getVespa )
 router.post('/add', ControllerMotorcycle.addMotorcycle)
 router.get('/', ControllerMotorcycle.getMotorcycles)
+router.get('/:id', ControllerMotorcycle.getMotorcycleById)
+router.patch('/:id', ControllerMotorcycle.updateStatus)
 
 module.exports = router

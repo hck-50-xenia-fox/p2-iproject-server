@@ -22,7 +22,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -43,7 +43,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -64,7 +64,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -85,7 +85,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -106,7 +106,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -130,7 +130,7 @@ class ControllerMotorcycle {
         fuel: data.data[0].physicalMeasuresAndCapacities.fuelCapacityName,
       });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
@@ -146,14 +146,37 @@ class ControllerMotorcycle {
       });
       res.status(201).json(motorcycle);
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 
   static async getMotorcycles(req, res, next) {
     try {
-      let motorcycles = await Motorcycle.find()
-      res.status(200).json(motorcycles)
+      let motorcycles = await Motorcycle.find();
+      res.status(200).json(motorcycles);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async updateStatus(req, res, next) {
+    try {
+      let { id } = req.params;
+      let findMotorcycle = await Motorcycle.findOne({ _id: id });
+      await findMotorcycle.updateOne({ status: "Available" });
+      res.status(200).json({
+        message: `Motorcycle rented successfully`,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getMotorcycleById(req, res, next) {
+    try {
+      let { id } = req.params
+      let findMotorcycle = await Motorcycle.findOne({ _id: id })
+      res.status(200).json(findMotorcycle)
     }
     catch (err) {
       next(err)
