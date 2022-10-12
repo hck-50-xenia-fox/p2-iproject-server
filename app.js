@@ -7,7 +7,7 @@ const UserController = require('./controllers/userController');
 const authUser = require('./middlewares/auth');
 const errorHandlers = require('./middlewares/errorHandlers');
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.urlencoded({extended : true}))
