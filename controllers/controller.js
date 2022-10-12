@@ -1,6 +1,8 @@
 const { compare } = require('../helpers/bcyrpt');
 const { loadToToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.GOOGLE_API_KEY);
 
 class Controller {
   static async login(req, res, next) {
@@ -59,6 +61,38 @@ class Controller {
       next(error);
     }
   }
+
+  static async google(req, res, next) {
+    try {
+      const ticket = await client.verifyIdToken({
+        idToken: req.headers.google_token,
+        audience: process.env.GOOGLE_API_KEY
+      });
+      // console.log(ticket);
+      const payload = ticket.getPayload();
+      const [user, created] = await User.findOrCreate({
+        where: {
+          email: payload.email,
+        },
+        defaults: {
+          username: payload.name,
+          email: payload.email,
+          password: "R311094R",
+        },
+        hooks: false,
+      });
+      
+      let id = user.id;
+      const access_token = loadToToken({
+        id: user.id,
+      });
+      res.status(200).json({ access_token});
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+
+}
 }
 
 module.exports = Controller;
