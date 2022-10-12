@@ -40,5 +40,17 @@
         "element": "Dark",
         "imageUrl": "https://gbf-img.com/character-idcharacter/3040111000_Orchid/3040111000_Orchid_03_zoom.png",
         "description": "A being that never expected to be, Orchid was given life by pure miracle and has questioned why ever since. On her quest for answers, she continues alone through the skies, vowing to one day reunite with those most dear to her."
+    },
+    {
+        "name": "Percival",
+        "element": "Fire",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040050000_Percival/3040050000_Percival_03_zoom.png",
+        "description": "Having conquered the trial of the beast, the Lord of Flames bears a new sword in his hand, but old convictions in his heart. With the help of his comrades, he will struggle on until the day his ideals leave the world of his dreams and enter the light of the sun."
+    },
+    {
+        "name": "Sandalphon",
+        "element": "Light",
+        "imageUrl": "https://gbf-img.com/character-idcharacter/3040153000_Sandalphon_(Event)/3040153000_Sandalphon_(Event)_03_zoom.png",
+        "description": "Having conquered the trial of the beast, the Lord of Flames bears a new sword in his hand, but old convictions in his heart. With the help of his comrades, he will struggle on until the day his ideals leave the world of his dreams and enter the light of the sun."
     }
 ]

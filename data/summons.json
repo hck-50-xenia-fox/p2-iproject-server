@@ -28,5 +28,15 @@
         "name": "Hades",
         "element": "Dark",
         "imageUrl": "https://gbf-img.com/summon-idcharacter/2040090000_Hades/2040090000_Hades_02_b.png"
+    },
+    {
+        "name": "Bahamut",
+        "element": "Dark",
+        "imageUrl": "https://gbf-img.com/summon-idcharacter/2040003000_Bahamut/2040003000_Bahamut_02_b.png"
+    },
+    {
+        "name": "Lucifer",
+        "element": "Light",
+        "imageUrl": "https://gbf-img.com/summon-idcharacter/2040056000_Lucifer/2040056000_Lucifer_02_b.png"
     }
 ]
