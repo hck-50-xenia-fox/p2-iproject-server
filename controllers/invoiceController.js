@@ -1,6 +1,8 @@
 const { Op } = require("sequelize");
+const midtransClient = require("midtrans-client");
 let easyinvoice = require("easyinvoice");
 let { Inventory, History, Invoice, User } = require("../models");
+const axios = require("axios");
 
 class InvoiceController {
   static async getAllInvoice(req, res, next) {
@@ -160,6 +162,65 @@ class InvoiceController {
     } catch (error) {
       console.log(error);
       next(error);
+    }
+  }
+  static async generatePayment(req, res, next) {
+    console.log(req.params);
+    try {
+      let UserId = req.user.id;
+      let id = req.params.id;
+      let seller = await User.findByPk(UserId);
+      let findInvoice = await Invoice.findByPk(id, {
+        include: {
+          model: Inventory,
+        },
+      });
+      console.log(findInvoice);
+      // let price =
+      //   Number(findInvoice.quantity) + Number(findInvoice.priceToSale);
+      let data = await axios({
+        // Below is the API URL endpoint
+        url: "https://app.sandbox.midtrans.com/snap/v1/transactions",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization:
+            "Basic " +
+            Buffer.from("SB-Mid-server-tdFvsDlUHELB7mtqtCivoGwE").toString(
+              "base64"
+            ),
+          // Above is API server key for the Midtrans account, encoded to base64
+        },
+        data:
+          // Below is the HTTP request body in JSON
+          {
+            transaction_details: {
+              order_id: findInvoice.rev ,
+              gross_amount: 10000,
+            },
+            credit_card: {
+              secure: true,
+            },
+            customer_details: {
+              first_name: "Johny",
+              last_name: "Kane",
+              email: "testmidtrans@mailnesia.com",
+              phone: "08111222333",
+            },
+          },
+      });
+      // console.log(data.data);
+      res.status(201).json(data.data);
+      // .then((snapResponse) => {
+      //   let snapToken = snapResponse.data.token;
+      //   console.log("Retrieved snap token:", snapToken);
+      //   // Pass the Snap Token to frontend, render the HTML page
+      //   res.send(getMainHtmlPage(snapToken, handleMainRequest));
+      // });
+    } catch (error) {
+      res.status(400).json(`Fail to call API w/ error ${error}`);
+      console.log(error);
     }
   }
 }
