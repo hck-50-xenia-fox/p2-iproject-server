@@ -28,7 +28,7 @@ class HistoryController {
         },
       });
       let grossProfit = Number(totalRevenue) - Number(totalExpense);
-
+      console.log(totalExpense, totalRevenue, grossProfit);
       res.status(200).json({ totalExpense, totalRevenue, grossProfit });
     } catch (error) {
       console.log(error);
