@@ -79,6 +79,31 @@ class MasterController {
     }
   }
 
+  static async fetchTopPlayer(req, res, next) {
+    try {
+      // console.log("masuk")
+      const { data } = await axios.get("https://lichess.org/api/player")
+      // console.log(data)
+      res.status(200).json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async fetchStreamer(req, res, next) {
+    try {
+
+      const { data } = await axios.get('https://api.chess.com/pub/streamers')
+
+      const dataStreamer = data.streamers.slice(0, 3)
+
+      res.status(200).json({ data: dataStreamer })
+
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
 
 

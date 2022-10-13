@@ -11,11 +11,9 @@ router.get('/chessProfile', authen, MasterController.fetchChessProfile)
 
 router.get('/chessStats', authen, MasterController.fetchChessStats)
 
+router.get('/top10Player', MasterController.fetchTopPlayer)
 
-
-
-
-
+router.get('/getStreamer', MasterController.fetchStreamer)
 
 
 
