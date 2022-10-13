@@ -15,8 +15,9 @@ router.get('/top10Player', MasterController.fetchTopPlayer)
 
 router.get('/getStreamer', MasterController.fetchStreamer)
 
+router.get('/getPuzzle', MasterController.fetchPuzzle)
 
-
+router.get('/youtube', MasterController.fetchDataYoutube)
 
 
 

@@ -104,6 +104,41 @@ class MasterController {
     }
   }
 
+  static async fetchPuzzle(req, res, next) {
+    try {
+      // console.log("masuk")
+      const puzzle1 = await axios.get(`https://api.chess.com/pub/puzzle`)
+      const puzzle2 = await axios.get(`https://api.chess.com/pub/puzzle/random`)
+
+      const puz1 = puzzle1.data
+      const puz2 = puzzle2.data
+
+      const data = [puz1, puz2]
+
+      res.status(200).json({ data })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async fetchDataYoutube(req, res, next) {
+    try {
+      const { data } = await axios({
+        method: 'GET',
+        url: 'https://youtube138.p.rapidapi.com/search/',
+        params: { q: 'hikaru', hl: 'en', gl: 'US' },
+        headers: {
+          'X-RapidAPI-Key': 'ba0adeaaadmshf54087cc3ac0c23p1307b8jsn795dfc92afc6',
+          'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+        }
+      })
+
+      res.status(200).json(data.contents.slice(0, 6))
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
 
 
