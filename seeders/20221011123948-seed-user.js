@@ -1,5 +1,5 @@
 'use strict';
-const { passHash } = require('../helpers');
+const { passHash } = require('../helpers/helpers');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -23,6 +23,7 @@ module.exports = {
           address: 'Jalan sana',
           password: passHash('user123'),
           role: 'User',
+          status: 'Free',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -31,6 +32,7 @@ module.exports = {
           name: 'user2',
           role: 'User',
           fullName: 'user 2',
+          status: 'Free',
           address: 'Jalan sana',
           password: passHash('user123'),
           createdAt: new Date(),
@@ -40,6 +42,7 @@ module.exports = {
           email: 'admin@mail.com',
           name: 'admin',
           role: 'Admin',
+          status: 'Free',
           fullName: 'admin 1',
           address: 'Jalan sana',
           password: passHash('admin123'),

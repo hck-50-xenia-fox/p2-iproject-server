@@ -1,6 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-const { passHash } = require('../helpers');
+const { passHash } = require('../helpers/helpers');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -79,6 +79,19 @@ module.exports = (sequelize, DataTypes) => {
           },
           notNull: {
             msg: 'Password is required',
+          },
+        },
+      },
+
+      status: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: 'Status is required',
+          },
+          notNull: {
+            msg: 'Status is required',
           },
         },
       },

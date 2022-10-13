@@ -1,4 +1,4 @@
-const { tokenSign, passCompare } = require('../helpers');
+const { tokenSign, passCompare } = require('../helpers/helpers');
 const { User } = require('../models/index');
 const { OAuth2Client } = require('google-auth-library');
 
