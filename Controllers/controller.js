@@ -48,4 +48,29 @@ class Controller{
       next(err);
     }
   }
+  static loginSpotify(req, res) {
+    const { code } = req.body;
+    if (!code) {
+      throw { name: "Invalid email/password" };
+    }
+    const spotifyApi = new SpotifyWebApi({
+      redirectUri: process.env.REDIRECT_URI,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+    });
+
+    spotifyApi
+      .authorizationCodeGrant(code)
+      .then((data) => {
+        res.status(200).json({
+          access_token: data.body.access_token,
+          expiresIn: data.body.expiresIn,
+        });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 }
+
+module.exports = Controller
