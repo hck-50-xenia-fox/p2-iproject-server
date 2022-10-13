@@ -1,5 +1,5 @@
 const express = require("express");
-const InventoryController = require("../controllers/inventoryController");
+const InventoryController = require("../controllers/inventorycontroller");
 const router = express.Router();
 
 router.get("/", InventoryController.fetchAllInventory);
