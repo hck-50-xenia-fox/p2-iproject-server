@@ -1,3 +1,0 @@
-(function () {
-    firebase.auth().signIN
-})
