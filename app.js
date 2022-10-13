@@ -4,9 +4,9 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const port = process.env.PORT || 3000
 const router = require('./routes')
 // const io = require('socket.io')(server)
-const port = process.env.PORT || 3000
 require('dotenv').config()
 
 
