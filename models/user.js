@@ -59,8 +59,17 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: [0]
     },
     photo: {
+      allowNull: false,
       type: DataTypes.STRING,
-      defaultValue : 'https://png.pngitem.com/pimgs/s/46-468761_pikachu-png-transparent-image-pikachu-png-png-download.png'
+      defaultValue : 'https://png.pngitem.com/pimgs/s/46-468761_pikachu-png-transparent-image-pikachu-png-png-download.png',
+      validate : {
+        notNull : {
+          msg : 'Photo is required'
+        },
+        notEmpty : {
+          msg: 'Photo is required'
+        }
+      }
     } 
   }, {
     sequelize,

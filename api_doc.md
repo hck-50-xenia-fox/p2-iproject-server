@@ -6,22 +6,23 @@ List of available endpoints:
 
 - `POST /register`
 - `POST /login`
-- `PUT /register`
+- `PUT /users`
 - `GET /pokemons`
 - `GET /products/:name`
 - `POST /questions`
-
-
 
 &nbsp;
 
 ## 1. POST /register
 
 ### Description
+
 - register for an account
 
 ### Request
+
 - Body
+
 ```json
   {
     "username": STRING,
@@ -29,30 +30,34 @@ List of available endpoints:
     "password": STRING,
   }
 ```
+
 ### Response
+
 _201 - CREATED_
 
 - Body
+
 ```json
 {
-    "message": "your account is now registered, Trainer.",
+  "message": "your account is now registered, Trainer."
 }
 ```
 
 _400 - Bad Request_
 
 - Body
+
 ```json
 {
-    "msg": 
+    "msg":
     [
-        "Email is already used", 
+        "Email is already used",
         OR
-        "Email is required", 
+        "Email is required",
         OR
-        "Password is required", 
+        "Password is required",
         OR
-        "Username is required", 
+        "Username is required",
     ]
 }
 ```
@@ -60,11 +65,13 @@ _400 - Bad Request_
 ## 2. POST /login
 
 ### Description
+
 - login to app with registered account
 
 ### Request
 
 - Headers
+
 ```json
 {
   "access_token" : STRING
@@ -72,6 +79,7 @@ _400 - Bad Request_
 ```
 
 - Body
+
 ```json
 {
   "email": STRING,
@@ -84,6 +92,7 @@ _400 - Bad Request_
 _200 - OK_
 
 - Body
+
 ```json
 {
     "access_token": STRING,
@@ -94,6 +103,7 @@ _200 - OK_
 _401 - Unauthorized_
 
 - Body
+
 ```json
 {
   "message": "Invalid email/password"
@@ -103,73 +113,66 @@ _401 - Unauthorized_
 _400 - Bad Request_
 
 - Body
+
 ```json
 {
   "message": "Email/password is required"
 }
 ```
 
-## 3. PUT /
+## 3. PUT /users
 
 ### Description
-- Update products detail by id
+
+- Update users profile
 
 ### Request
+
 - Headers
+
 ```json
 {
   "access_token": STRING
 }
 ```
 
-- Params
-```json
-{
-  "id": INTEGER
-}
-```
 - Body
+
 ```json
 {
-  "name": STRING,
-  "description": STRING,
-  "price": INTEGER,
-  "stock": INTEGER,
-  "imgUrl": STRING,
-  "categoryId": INTEGER,
+  "username": STRING,
+  "email": STRING,
+  "photo": STRING,
 }
 ```
 
 ### Response
+
 _200 - OK_
 
 - Body
+
 ```json
 {
-    "message": "Product updated successfully"
+  "message": "Your profile has been updated successfully"
 }
 ```
 
 _400 - Bad Request_
 
 - Body
+
 ```json
-  {
-    "msg": 
+{
+    "msg":
     [
-        "Please dont let the product name empty", 
+        "Email is already used",
         OR
-        "Please dont let the product description empty",
+        "Email is required",
         OR
-        "Please dont let the product price empty",
+        "Photo is required",
         OR
-        "Please dont let the product stock empty",
-        OR
-        "Please dont let the product image empty",
-        OR
-        "Please dont let the product category empty",
-        OR
-        "Minimum product price is Rp.1000",
+        "Username is required",
     ]
 }
 ```
@@ -177,67 +180,46 @@ _400 - Bad Request_
 _404 - Not Found_
 
 - Body
+
 ```json
 {
-    "msg": "Product to edited not found"
+    "message": "User's profile with this ID is registered"
+
+    OR
+
+    {
+    "message": "Account is not registered"
+}
 }
 ```
 
 _401 - Unauthorized_
 
 - Body
+
 ```json
 {
-    "msg": "User not login yet!"
+    "message": "User is not logged in"
 }
 
 OR
 
+
 {
-    "msg": "Invalid Token"
+    "message": "Invalid Token"
 }
 ```
 
-
-
-
-## 3. POST /pub/google-sign-in
+## 4. GET /pokemons
 
 ### Description
-- login to app as user with google account
+
+- Get all pokemons data
 
 ### Request
 
 - Headers
-```json
-{
-  "google_token": STRING
-}
-```
 
-### Response
-
-_200 - OK_
-
-- Body
-```json
-{
-    "statusCode": 200,
-    "access_token": STRING,
-    "username": STRING,
-    "id": INTEGER,
-    "role": STRING,
-    "email" : STRING
-}
-```
-
-## 4. GET /pub/products
-
-### Description
-- Get all products data
-
-### Request
-- Headers
 ```json
 {
   "access_token" : STRING
@@ -245,194 +227,597 @@ _200 - OK_
 ```
 
 ### Response
+
 _200 - OK_
 
 - Body
+
 ```json
 {
-  "data": [
-    {
-      "id": INTEGER,
-      "name": STRING,
-      "description": STRING,
-      "price": INTEGER,
-      "stock": INTEGER,
-      "imgUrl": STRING,
-      "categoryId": INTEGER,
-      "authorId": INTEGER,
-      "createdAt": DATE,
-      "updatedAt": DATE,
-      "User": OBJECT,
-      "Category": OBJECT
-    }
-    ...
-  ]
-}  
-```
-
-## 5. GET /pub/products/:id
-
-### Description
-- Get product detail by an id
-
-### Request
-
-- Params
-```json
-{
-  "id": INTEGER
-}
-```
-
-### Response
-_200 - OK_
-
-- Body
-```json
-{
-  "data": 
-      {
-        "id": INTEGER,
+        "idPokedex": INTEGER,
         "name": STRING,
         "description": STRING,
-        "price": INTEGER,
-        "stock": INTEGER,
-        "imgUrl": STRING,
-        "categoryId": INTEGER,
-        "authorId": INTEGER,
-        "createdAt": DATE,
-        "updatedAt": DATE,
-        "User": OBJECT,
-        "Category": OBJECT
-      }
-}
-```
-
- _404 - Not Found_
-
-- Body
-```json
-  {
-      "msg": "Product not found"
-  }
-```
-
-## 6. GET /pub/wishlists
-
-### Description
-- Get all customer who logged in wishlists
-
-### Request
-- Headers
-```json
-{
-  "access_token": STRING
-}
-```
-
-### Response
-_200 - OK_
-
-- Body
-```json
-[
-    {
-        "id": INTEGER,
-        "ProductId": INTEGER,
-        "UserId": INTEGER,
-        "createdAt": DATE,
-        "updatedAt": DATE,
-        "Product": {
-            "id": INTEGER,
+        "sexMalePorcentage": INTEGER,
+        "sexFemalePorcentage": INTEGER,
+        "undefinedPorcentage": INTEGER,
+        "stats": {
+            "hp": INTEGER,
+            "attack": INTEGER,
+            "defense": INTEGER,
+            "specialAttack": INTEGER,
+            "specialDefense": INTEGER,
+            "speed": INTEGER,
+            "height": INTEGER,
+            "weight": INTEGER,
+            "types": {
+                "name": {
+                    "type1": STRING,
+                    "type2": STRING,
+                },
+                "weakness": {
+                    "damageDoubleFrom": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "damageDoubleTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "halfDamageFrom": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url":STRING,
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "halfDamageTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "noDamageFrom": ARRAY,
+                    "noDamegeTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ]
+                }
+            }
+        },
+        "image": {
+            "default": STRING,
+            "UrlMaleOrUndefined": STRING,
+            "UrlShiny": STRING
+        },
+        "color": {
             "name": STRING,
-            "description": STRING,
-            "price": INTEGER,
-            "stock": INTEGER,
-            "imgUrl": STRING,
-            "categoryId": INTEGER,
-            "status": STRING,
-            "authorId": INTEGER,
-            "createdAt": DATE,
-            "updatedAt": DATE
+            "url": STRING
+        },
+        "habitat": {
+            "name": STRING,
+            "url": STRING
+        },
+        "generation": {
+            "name": STRING,
+            "url": STRING
+        }
     },
     ...
-]
+```
+
+_404 - Not Found_
+
+- Body
+
+```json
+{
+    "message": "User's profile with this ID is registered" 
+}
+    OR
+{
+    "message": "Account is not registered"
+}
 ```
 
 _401 - Unauthorized_
 
 - Body
+
 ```json
 {
-    "msg": "User not login yet!"
+    "message": "User is not logged in"
 }
-
-OR
-
+    OR
 {
-    "msg": "Invalid Token"
-}
-```
-_403 - Forbbiden_
-
-- Body
-```json
-{
-    "msg": "User cannot access this action"
+    "message": "Invalid Token"
 }
 ```
 
-## 7. POST /pub/wishlists/:id
-
+## 5. GET /pokemons/:name
 
 ### Description
-- Add new wishlist on customer wishlists 
+
+- Get pokemon detail by name
 
 ### Request
-- Headers
-```json
-{
-  "access_token": STRING
-}
-```
 
-- Body
+- Params
+
 ```json
 {
   "name": STRING
 }
 ```
+
 ### Response
 
-_201 - CREATED_
+_200 - OK_
+
+- Body
+
 ```json
 {
-    "message": "Success adding product's name to your wishlists!"
+        "idPokedex": INTEGER,
+        "name": STRING,
+        "description": STRING,
+        "sexMalePorcentage": INTEGER,
+        "sexFemalePorcentage": INTEGER,
+        "undefinedPorcentage": INTEGER,
+        "stats": {
+            "hp": INTEGER,
+            "attack": INTEGER,
+            "defense": INTEGER,
+            "specialAttack": INTEGER,
+            "specialDefense": INTEGER,
+            "speed": INTEGER,
+            "height": INTEGER,
+            "weight": INTEGER,
+            "types": {
+                "name": {
+                    "type1": STRING,
+                    "type2": STRING,
+                },
+                "weakness": {
+                    "damageDoubleFrom": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "damageDoubleTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "halfDamageFrom": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url":STRING,
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "halfDamageTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        },
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ],
+                    "noDamageFrom": ARRAY,
+                    "noDamegeTo": [
+                        {
+                            "name": STRING,
+                            "url": STRING
+                        }
+                    ]
+                }
+            }
+        },
+        "image": {
+            "default": STRING,
+            "UrlMaleOrUndefined": STRING,
+            "UrlShiny": STRING
+        },
+        "color": {
+            "name": STRING,
+            "url": STRING
+        },
+        "habitat": {
+            "name": STRING,
+            "url": STRING
+        },
+        "generation": {
+            "name": STRING,
+            "url": STRING
+        }
+    },
+    ...
+```
+
+_404 - Not Found_
+
+- Body
+
+```json
+{
+    "message": "User's profile with this ID is registered"
+}
+    OR
+{
+    "message": "Account is not registered"
+}
+    OR
+{
+    "message": "Sorry, the name of the pokemon you are looking for does'nt exist"
 }
 ```
 
 _401 - Unauthorized_
 
 - Body
+
 ```json
 {
-    "msg": "User not login yet!"
+    "message": "User is not logged in"
 }
-
-OR
-
+    OR
 {
-    "msg": "Invalid Token"
+    "message": "Invalid Token"
 }
 ```
 
- _404 - Not Found_
+## 6. GET /questions
+
+### Description
+
+- Get all questions
+
+### Request
+
+- Headers
+
+```json
+{
+  "access_token": STRING
+}
+```
+
+### Response
+
+_200 - OK_
 
 - Body
+
 ```json
-  {
-      "msg": "Product not found"
-  }
+[
+    {
+        "id": INTEGER,
+        "description": STRING,
+        "choice1": STRING,
+        "choice2": STRING,
+        "choice3": STRING,
+        "choice4": STRING,
+        "answer": STRING,
+        "createdAt": DATE,
+        "updatedAt": DATE,
+    }
+    ...
+]
+```
+_404 - Not Found_
+
+- Body
+
+```json
+{
+    "message": "Account is not registered"
+}
+```
+
+_401 - Unauthorized_
+
+- Body
+
+```json
+{
+    "message": "User is not logged in"
+}
+    OR
+{
+    "message": "Invalid Token"
+}
+```
+
+## 7. POST /questions
+
+### Description
+
+- Add new questions
+
+### Request
+
+- Headers
+
+```json
+{
+  "access_token": STRING
+}
+```
+
+- Body
+
+```json
+{
+  "description": STRING,
+  "choice1" : STRING,
+  "choice2" : STRING,
+  "choice3" : STRING,
+  "choice4" : STRING,
+  "answer" : STRING
+}
+```
+
+### Response
+
+_201 - CREATED_
+
+```json
+{
+  "message": "Your question has been accommodated, thank you for your participation."
+}
+```
+
+_400 - Bad Request_
+
+- Body
+
+```json
+{
+    "msg":
+    [
+        "Question description is required",
+        OR
+        "Choices is required",
+        OR
+        "The answers that are filled out do not match the choices given",
+    ]
+}
+```
+
+_404 - Not Found_
+
+- Body
+
+```json
+{
+    "message": "Account is not registered"
+}
+```
+
+_401 - Unauthorized_
+
+- Body
+
+```json
+{
+    "message": "User is not logged in"
+}
+    OR
+{
+    "message": "Invalid Token"
+}
 ```
 
 &nbsp;
@@ -440,9 +825,11 @@ OR
 ## Global Error
 
 ### Response
+
 _500 - Internal Server Error_
 
 - Body
+
 ```json
 {
   "msg": "Internal Server Error"

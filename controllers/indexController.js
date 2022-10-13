@@ -74,7 +74,7 @@ class indexController {
 
     static async updateProfile (req, res, next) {
         try {
-            const UserId = req.params.id
+            const UserId = req.user.id
             const { username, email, photo } = req.body
 
             let user = await User.findByPk(UserId)

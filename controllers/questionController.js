@@ -2,6 +2,26 @@ const { Question } = require('../models/index')
 
 class questionController {
 
+    static async showQuestion (req, res, next) {
+        try {
+
+            let data = await Question.findAll()
+
+            let package1 = data.slice(0, 10)
+            let package2 = data.slice(10, 20)
+            let package3 = data.slice(20, 30)
+            let package4 = data.slice(30, 40)
+            
+            let bundle = [package1, package2, package3, package4]
+
+            let questions = bundle[Math.floor(Math.random()*bundle.length)]
+
+            res.status(200).json(questions) 
+        } catch (error) {
+            res.status(500).json({message: 'Internal Server Error'})
+        }
+    }
+
     static async addQuestion (req, res, next) {
         try {
             
