@@ -9,7 +9,8 @@ router.use(authentication);
 router.get("/course", Controller.showAllCourse);
 router.get("/course/:courseId", Controller.detailCourse);
 router.post("/mycourse", Controller.addMyCourse);
-router.put('/mycourse', Controller.putMyCourse)
+router.post('/payment', Controller.payment)
+router.put('/mycourse/:courseId', Controller.updateCourse)
 router.get("/mycourse/:courseId", Controller.showMyCourse);
 router.delete('/mycourse/:courseId', Controller.deleteCourse)
 

@@ -90,7 +90,7 @@ class Controller {
       let parameter = {
         transaction_details: {
           order_id: `your transaction ${order}`,
-          gross_amount: 10000,
+          gross_amount: 50000,
         },
         credit_card: {
           secure: true,
@@ -110,25 +110,36 @@ class Controller {
       next(error);
     }
   }
-  // ini ganti baca semua data biasa aja, tampilin cardnya aja
-  static async showAllCourse(req, res, next) {
+  static async updateCourse(req, res, next) {
     try {
-      const { search } = req.query;
+      let { courseId } = req.params;
+      console.log(courseId);
 
-      const condition = { where: { status: "available" } };
-      if (search) {
-        condition.where.name = { [Op.iLike]: `%${search}%` };
-      }
-      const pages = await Course.findAndCountAll(condition);
-
-      res.status(200).json({
-        data: pages.rows,
-      });
+      await Course.update({ status: 'available'},
+      where: {
+        id: courseId
+      })
+      res.status(200).json({message: 'Course update'})
     } catch (error) {
       next(error);
     }
   }
-
+  static async showAllCourse(req, res, next) {
+    try {
+      let dataCourse = await Course.findAll({
+        include: [
+          {
+            model: User,
+            attributes: { exclude: ['password']}
+          }
+        ]
+      })
+      res.status(200).json(dataCourse)
+      next()
+    } catch (error) {
+      next(error)
+  }
+}
   static async detailCourse(req, res, next) {
     try {
       const { courseId: id } = req.params;
@@ -178,11 +189,23 @@ class Controller {
       next(error);
     }
   }
-  static addSubscribe(req, res, next) {
-    const { email } = req.body;
+  static async deleteCourse(req, res, next) {
+    try {
+      let data = await MyCourse.findByPk(req.params.id)
+      if(!data) {
+        throw {message: "course not found"}
+      }
+      await MyCourse.destroy({where: {id: req.params.id}})
+      res.status(200).json({ message: `${data.name} success to deleted`})
+    } catch (error) {
+      next(error)
+    }
+  }
+  static loginNodemailer(req, res, next) {
+   try{ 
+  const { email } = req.body;
     const input = { email };
-    User.create(input)
-      .then(() => {
+   await User.create({input})
         const transporter = nodemailer.createTransport(
           smtpTransport({
             service: "gmail",
@@ -192,8 +215,7 @@ class Controller {
               pass: "mhrztczzwoimzmxs",
             },
           })
-        );
-
+        )
         const mailOptions = {
           from: "webmail.auto.sender@gmail.com@gmail.com",
           to: `${email}`,
@@ -206,17 +228,18 @@ class Controller {
           else console.log("Email sent: " + info.res);
         });
 
-        res.redirect("/home");
-      })
-      .catch((err) => {
-        if (!err.errors) res.send(err);
-        else {
+        res.redirect("/login");
+      }catch(err) {
+        if (!err.errors) {
+          next(err);
+        } else {
           let invalid = {};
           err.errors.forEach((v) => (invalid[v.path] = v.message));
-          res.render("home", { input, invalid });
+          res.render("register", { input, invalid });
         }
-      });
+      }
+      };
   }
-}
+
 
 module.exports = Controller;
