@@ -3,6 +3,7 @@ const midtransClient = require("midtrans-client");
 let easyinvoice = require("easyinvoice");
 let { Inventory, History, Invoice, User } = require("../models");
 const axios = require("axios");
+const main = require("../helpers/nodemail");
 
 class InvoiceController {
   static async getAllInvoice(req, res, next) {
@@ -21,6 +22,23 @@ class InvoiceController {
       next(error);
     }
   }
+  static async getTargetInvoice(req, res, next) {
+    try {
+      let UserId = req.user.id;
+      let id = req.params.id;
+      let findInvoice = await Invoice.findByPk(id, {
+        where: {
+          UserId,
+        },
+      });
+      if (!findInvoice) {
+        throw { name: "Error not found" };
+      }
+      res.status(200).json(findInvoice);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async addInvoice(req, res, next) {
     try {
       let UserId = req.user.id;
@@ -31,6 +49,8 @@ class InvoiceController {
         quantity,
         priceToSale,
         rev,
+        customerEmail,
+        customerPhoneNumber,
       } = req.body;
       let totalPrice = +priceToSale * +quantity;
       let findInventory = await Inventory.findByPk(InventoryId);
@@ -59,11 +79,13 @@ class InvoiceController {
         quantity,
         priceToSale,
         rev,
+        customerEmail,
+        customerPhoneNumber,
       });
       await History.create({
         revenue: totalPrice,
         description: `Sale ${findInventory.productName} to ${data.customerName} `,
-        type: "Purchase",
+        type: "Sales",
         InventoryId: InventoryId,
         InvoiceId: data.id,
         UserId,
@@ -127,7 +149,6 @@ class InvoiceController {
     try {
       let UserId = req.user.id;
       let id = req.params.id;
-
       let seller = await User.findByPk(UserId);
       let findInvoice = await Invoice.findByPk(id, {
         include: {
@@ -150,6 +171,8 @@ class InvoiceController {
       let clientData = {
         company: findInvoice.customerName,
         address: findInvoice.customerAddress,
+        email: findInvoice.customerEmail,
+        phoneNumber: findInvoice.customerPhoneNumber,
       };
       let informationData = {
         number: findInvoice.rev,
@@ -169,6 +192,7 @@ class InvoiceController {
     try {
       let UserId = req.user.id;
       let id = req.params.id;
+      let randomNumber = Math.floor(Math.random() * 1000);
       let seller = await User.findByPk(UserId);
       let findInvoice = await Invoice.findByPk(id, {
         include: {
@@ -176,8 +200,8 @@ class InvoiceController {
         },
       });
       console.log(findInvoice);
-      // let price =
-      //   Number(findInvoice.quantity) + Number(findInvoice.priceToSale);
+      let grossAmount =
+        Number(findInvoice.quantity) + Number(findInvoice.priceToSale);
       let data = await axios({
         // Below is the API URL endpoint
         url: "https://app.sandbox.midtrans.com/snap/v1/transactions",
@@ -187,30 +211,29 @@ class InvoiceController {
           Accept: "application/json",
           Authorization:
             "Basic " +
-            Buffer.from("SB-Mid-server-tdFvsDlUHELB7mtqtCivoGwE").toString(
-              "base64"
-            ),
+            Buffer.from(process.env.SERVER_KEY_MIDTRANS).toString("base64"),
           // Above is API server key for the Midtrans account, encoded to base64
         },
         data:
           // Below is the HTTP request body in JSON
           {
             transaction_details: {
-              order_id: findInvoice.rev ,
-              gross_amount: 10000,
+              order_id: findInvoice.rev + randomNumber,
+              gross_amount: Number(grossAmount),
             },
             credit_card: {
               secure: true,
             },
             customer_details: {
-              first_name: "Johny",
-              last_name: "Kane",
-              email: "testmidtrans@mailnesia.com",
-              phone: "08111222333",
+              first_name: findInvoice.customerName,
+              last_name: findInvoice.customerName,
+              email: findInvoice.customerEmail,
+              phone: findInvoice.customerPhoneNumber,
             },
           },
       });
       // console.log(data.data);
+      main(findInvoice.customerEmail, "Payment", data.data.redirect_url);
       res.status(201).json(data.data);
       // .then((snapResponse) => {
       //   let snapToken = snapResponse.data.token;

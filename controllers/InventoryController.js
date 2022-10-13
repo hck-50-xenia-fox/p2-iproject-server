@@ -16,6 +16,23 @@ class InventoryController {
       next(error);
     }
   }
+  static async getTargetInventory(req, res, next) {
+    try {
+      let UserId = req.user.id;
+      let id = req.params.id;
+      let findInventory = await Inventory.findByPk(id, {
+        where: {
+          UserId,
+        },
+      });
+      if (!findInventory) {
+        throw { name: "Error not found" };
+      }
+      res.status(200).json(findInventory);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async buyInventory(req, res, next) {
     console.log(req.body);
     try {
