@@ -23,6 +23,12 @@ async function errorHandler(err, req, res, next) {
   } else if (err.name === "Forbidden") {
     code = 403;
     message = err.name;
+  } else if (err.name === "Email is required") {
+    code = 400;
+    message = err.name;
+  } else if (err.name === "Password is required") {
+    code = 400;
+    message = err.name;
   } else {
     code = 500;
     message = "Internal server error";

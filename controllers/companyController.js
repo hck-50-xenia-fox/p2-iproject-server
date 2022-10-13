@@ -47,24 +47,6 @@ class CompanyController {
       next(error);
     }
   }
-  static async getEmployee(req, res, next) {
-    try {
-      const data = await Employee.findAll({
-        where: {
-          CompanyId: req.company.id,
-          include: {
-            model: Manager,
-            attributes: {
-              exclude: ["createdAt", "updatedAt"],
-            },
-          },
-        },
-      });
-      res.status(200).json(data);
-    } catch (error) {
-      next(error);
-    }
-  }
   static async getManager(req, res, next) {
     try {
       const data = await Manager.findAll({

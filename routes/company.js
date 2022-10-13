@@ -7,7 +7,6 @@ const router = require("express").Router();
 router.use(companyAuthentication);
 router.post("/addManager", ManagerController.register);
 router.get("/managers", CompanyController.getManager);
-router.get("/employee", CompanyController.getEmployee);
 router.delete(
   "/manager/:id",
   companyAuthorize,
