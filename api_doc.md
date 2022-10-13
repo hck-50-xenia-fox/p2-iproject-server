@@ -1,7 +1,8 @@
  Hacktiv Course API Documentation
 
 ### Deployed server
-
+-`https://go-koss-hck8.web.app`
+-`https://project-individual-hck8.herokuapp.com`
 
 ## Endpoints :
 
