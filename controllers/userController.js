@@ -82,7 +82,7 @@ class UserController{
             password: user.password,
           });
           let payloadLogin = { id: user.id, role: user.role };
-          res.status(200).json({ access_token, payloadLogin });
+          res.status(200).json({ access_token, role: user.role, username: user.username});
         } catch (error) {
           next(error);
         }
