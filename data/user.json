@@ -1,0 +1,16 @@
+[
+    { "username": "arya", 
+      "email": "arya@gmail.com", 
+      "password": "arya123", 
+      "role": "Admin", 
+      "phoneNumber": "085714220259", 
+      "address": "Depok" 
+    },
+    { "username": "lanny", 
+      "email": "lanny@gmail.com", 
+      "password": "lanny123", 
+      "role": "Customer", 
+      "phoneNumber": "08513512673", 
+      "address": "Jakarta" }
+  ]
+  
