@@ -97,7 +97,7 @@ class UserController{
             let factData = data.data
             res.status(200).json(factData)
         } catch (error) {
-            console.log(error)
+            next(error)
         }
       }
 
@@ -109,7 +109,7 @@ class UserController{
             })
             res.status(200).json(data)
         } catch (error) {
-            console.log(error)
+            next(error)
         }
       }
 }

@@ -2,7 +2,6 @@ class paymentController {
   static snapPayment(req, res, next) {
     let userId = req.user.id;
     const { price } = req.body;
-    console.log(req.user.email);
     const midtransClient = require('midtrans-client');
     let snap = new midtransClient.Snap({
       isProduction: false,
