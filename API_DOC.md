@@ -4,6 +4,7 @@ List of Available Endpoints:
 
 - `POST /users/register`
 - `POST /users/login`
+- `POST /users/getHistory`
 
 - `GET /youtube/search/:search`
 - `GET /youtube/videoDetail/:id`
@@ -403,6 +404,33 @@ _200 - OK_
         "views": "String",
         "videoId": "String",
         "titleVideo": "String",
+      },
+      ...
+    ]
+  }
+  ```
+
+## 9. GET /users/getHistory
+
+#### Description
+
+- Get data history
+
+#### Response
+
+_200 - OK_
+
+- Body
+  ```json
+  {
+    "statusCode": 200,
+    "data": [
+      {
+        "id" : Integer,
+        "name" : "String",
+        "description" : "String",
+        "createdAt" : Date,
+        "updatedAt" : Date
       },
       ...
     ]

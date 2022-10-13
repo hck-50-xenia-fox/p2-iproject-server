@@ -81,6 +81,15 @@ class Controller {
       next(error);
     }
   }
+
+  static async getHistory(req, res, next) {
+    try {
+      let data = await History.findAll();
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = Controller;
