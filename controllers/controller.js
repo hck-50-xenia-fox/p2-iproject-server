@@ -108,7 +108,6 @@ class Controller {
       console.log(process.env);
       const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.G_PI_KEY}`;
       const response = await axios.get(url);
-      console.log(response);
       const data = response.data.results.map((el, id) => {
         return {
           id: id + 1,
