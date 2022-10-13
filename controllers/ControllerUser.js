@@ -11,8 +11,11 @@ const {
 const emailSender = require("../helpers/sendEmail");
 
 class ControllerUser {
+
+  //REGISTER USER
   static async register(req, res, next) {
     try {
+      //THIRD PARTY API: SPOTT RAPIDAPI
       let data = await axios({
         url: `https://spott.p.rapidapi.com/places/ip/me`,
         method: "GET",
@@ -29,6 +32,7 @@ class ControllerUser {
         phoneNumber: req.body.phoneNumber,
         address: location,
       });
+      //NODEMAILER
       emailSender(user);
       res.status(201).json({
         message: "User was registered successfully!",
@@ -40,6 +44,7 @@ class ControllerUser {
     }
   }
 
+  //LOGIN USER
   static async login(req, res, next) {
     try {
       let { email, password } = req.body;

@@ -6,6 +6,7 @@ require("dotenv").config();
 const baseURLMotor = "https://motorcycle-specs-database.p.rapidapi.com/make";
 
 class ControllerMotorcycle {
+  //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
   static async getADV(req, res, next) {
     try {
       let data = await axios.get(`${baseURLMotor}/Honda/model/ADV150`, {
@@ -28,6 +29,7 @@ class ControllerMotorcycle {
 
   static async getPCX(req, res, next) {
     try {
+      //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
       let data = await axios.get(`${baseURLMotor}/Honda/model/PCX150`, {
         headers: {
           "X-RapidAPI-Key": process.env.KEY_MOTOR,
@@ -48,6 +50,7 @@ class ControllerMotorcycle {
 
   static async getScoopy(req, res, next) {
     try {
+      //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
       let data = await axios.get(`${baseURLMotor}/Honda/model/Scoopy%20110`, {
         headers: {
           "X-RapidAPI-Key": process.env.KEY_MOTOR,
@@ -68,6 +71,7 @@ class ControllerMotorcycle {
 
   static async getNMAX(req, res, next) {
     try {
+      //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
       let data = await axios.get(`${baseURLMotor}/Yamaha/model/NMAX%20155`, {
         headers: {
           "X-RapidAPI-Key": process.env.KEY_MOTOR,
@@ -88,6 +92,7 @@ class ControllerMotorcycle {
 
   static async getXMAX(req, res, next) {
     try {
+      //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
       let data = await axios.get(`${baseURLMotor}/Yamaha/model/XMAX%20300`, {
         headers: {
           "X-RapidAPI-Key": process.env.KEY_MOTOR,
@@ -108,6 +113,7 @@ class ControllerMotorcycle {
 
   static async getVespa(req, res, next) {
     try {
+      //THIRD PARTY API: MOTORCYCLE SPECS DATABASE RAPIDAPI
       let data = await axios.get(
         `${baseURLMotor}/Vespa/model/Primavera%20150`,
         {
@@ -129,6 +135,7 @@ class ControllerMotorcycle {
     }
   }
 
+  //POST MOTORCYCLE
   static async addMotorcycle(req, res, next) {
     try {
       if (!brand || !model || !imageUrl || !transmission || !fuel || !price) {
@@ -148,6 +155,7 @@ class ControllerMotorcycle {
     }
   }
 
+  //GET ALL MOTORCYCLES
   static async getMotorcycles(req, res, next) {
     try {
       let motorcycles = await Motorcycle.find();
@@ -157,6 +165,7 @@ class ControllerMotorcycle {
     }
   }
 
+  //PATCH STATUS MOTORCYCLE
   static async updateStatus(req, res, next) {
     try {
       let { id } = req.params;
@@ -173,6 +182,7 @@ class ControllerMotorcycle {
     }
   }
 
+  //GET MOTORCYCLE BY ID
   static async getMotorcycleById(req, res, next) {
     try {
       let { id } = req.params;
