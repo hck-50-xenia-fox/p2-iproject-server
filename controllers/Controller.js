@@ -6,7 +6,7 @@ const X_RapidAPI_Key = process.env.X_RapidAPI_Key;
 const X_RapidAPI_Host = "travel-advisor.p.rapidapi.com";
 const rapid_url = "https://travel-advisor.p.rapidapi.com";
 const rapid_headers = {
-  "X-RapidAPI-Key": "cd863f5f96mshbead8b39312ff1dp172206jsn04685c7e04f5",
+  "X-RapidAPI-Key": "467cf046a2msh3bee90bec04b41cp1381ddjsn71fbeb5301d5",
   "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
 };
 
@@ -61,7 +61,7 @@ class Controller {
       const access_token = signPayload(payload);
       res.status(200).json({ access_token, email: data.email, id: data.id });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.name === "SequelizeValidationError") {
         res.status(400).json(error.errors[0].message);
       } else if (error.name === "Invalid email/password") {
@@ -134,6 +134,7 @@ class Controller {
 
   static async listAttraction(req, res) {
     try {
+      // console.log("masuk sini");
       const page = +req.query.page || 1;
       const limit = +req.query.size || 8;
       const location_id = +req.query.location_id || 294229;
