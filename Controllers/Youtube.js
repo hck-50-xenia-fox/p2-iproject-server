@@ -1,4 +1,5 @@
 let axios = require("axios");
+let { History } = require("../models/index");
 
 class Controller {
   static async getTrailerMovie(req, res, next) {
@@ -108,6 +109,7 @@ class Controller {
           });
         }
       });
+
       res.status(200).json(response);
     } catch (error) {
       next(error);

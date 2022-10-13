@@ -1,4 +1,4 @@
-let { User } = require("../models/index");
+let { User, History } = require("../models/index");
 let axios = require("axios");
 let emailSend = require("../helper/nodemailer");
 
@@ -27,6 +27,11 @@ class Controller {
         address: lokasi,
       });
       emailSend(dataUser);
+
+      let dataHistory = await History.create({
+        name: dataUser.username,
+        description: `New user with id ${dataUser.id}, and name ${dataUser.username} register`,
+      });
       res.status(201).json({
         id: dataUser.id,
         email: dataUser.email,

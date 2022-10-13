@@ -90,7 +90,8 @@ _200 - Ok_
 - Body
   ```json
   {
-    "access_token": "string",
+    "X-RapidAPI-Key": "string",
+    "X-RapidAPI-Host": "String",
     "username": "String"
   }
   ```
@@ -125,7 +126,8 @@ _404 - Data Not Found_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -166,7 +168,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -210,7 +213,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -247,7 +251,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -288,7 +293,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -330,7 +336,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -371,7 +378,8 @@ _200 - OK_
 - Headers
   ```json
   {
-    "access_token": "String"
+    "X-RapidAPI-Key": "String",
+    "X-RapidAPI-Host": "String"
   }
   ```
 
@@ -410,11 +418,5 @@ _200 - OK_
   ```json
   {
     "message": "Internal Server Error"
-  }
-  ```
-
-  ```json
-  {
-    "message": "Unauthorized"
   }
   ```
