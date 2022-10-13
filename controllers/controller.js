@@ -3,6 +3,7 @@ const { loadToToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_API_KEY);
+const axios = require('axios')
 
 class Controller {
   static async login(req, res, next) {
@@ -102,9 +103,12 @@ class Controller {
 
   static async NearbySearch (req, res, next) {
     try {
+      // console.log(req.query);
       const { lat, lng } = req.query;
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.GAPI_KEY}`;
+      console.log(process.env);
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&keyword=kos&key=${process.env.G_PI_KEY}`;
       const response = await axios.get(url);
+      console.log(response);
       const data = response.data.results.map((el, id) => {
         return {
           id: id + 1,
@@ -115,8 +119,10 @@ class Controller {
           photos: el.photos,
         };
       });
+      console.log(data);
       res.status(200).json(data);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   };
