@@ -79,6 +79,44 @@ class Controller {
       next(error);
     }
   }
+  static async googleLogIn(req, res, next) {
+    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      console.log(req.headers);
+      const ticket = await client.verifyIdToken({
+        idToken: req.headers.google_token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      const data = await User.findOrCreate({
+        where: {
+          email: payload.email,
+        },
+        defaults: {
+          username: payload.name,
+          email: payload.email,
+          password: "ini dari google",
+          role: "Customer",
+          phoneNumber: "12345",
+          address: "jakarta",
+        },
+        hooks: false,
+      });
+      let user = data[0];
+      const access_token = generateToken({
+        id: user.id,
+      });
+      res.status(201).json({
+        statusCode: 201,
+        access_token: access_token,
+        username: user.username,
+        id: user.id,
+        role: user.role,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  
   static async payment(req, res, next) {
     try {
       const midtransClient = require("midtrans-client");
@@ -115,15 +153,17 @@ class Controller {
       let { courseId } = req.params;
       console.log(courseId);
 
-      await Course.update({ status: 'available'},
-      where: {
-        id: courseId
+      await Course.update({
+        where: {
+          id: courseId
+      }
       })
       res.status(200).json({message: 'Course update'})
     } catch (error) {
       next(error);
     }
   }
+  // ini ganti baca semua data biasa aja, tampilin cardnya aja
   static async showAllCourse(req, res, next) {
     try {
       let dataCourse = await Course.findAll({
@@ -201,11 +241,11 @@ class Controller {
       next(error)
     }
   }
-  static loginNodemailer(req, res, next) {
-   try{ 
-  const { email } = req.body;
+  static addNodemailer(req, res, next) {
+    const { email } = req.body;
     const input = { email };
-   await User.create({input})
+    User.create(input)
+      .then(() => {
         const transporter = nodemailer.createTransport(
           smtpTransport({
             service: "gmail",
@@ -215,7 +255,8 @@ class Controller {
               pass: "mhrztczzwoimzmxs",
             },
           })
-        )
+        );
+
         const mailOptions = {
           from: "webmail.auto.sender@gmail.com@gmail.com",
           to: `${email}`,
@@ -229,17 +270,16 @@ class Controller {
         });
 
         res.redirect("/login");
-      }catch(err) {
-        if (!err.errors) {
-          next(err);
-        } else {
+      })
+      .catch((err) => {
+        if (!err.errors) res.send(err);
+        else {
           let invalid = {};
           err.errors.forEach((v) => (invalid[v.path] = v.message));
           res.render("register", { input, invalid });
         }
-      }
-      };
+      });
   }
-
+}
 
 module.exports = Controller;

@@ -1,16 +1,14 @@
 "use strict";
-const { hashPassword } = require("../helpers/bcrypt");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    let data = require("../data/user.json");
+    let data = require("../data/myCourse.json");
     // console.log(data);
     data.forEach((el) => {
-      el.password = hashPassword(el.password);
       el.createdAt = new Date();
       el.updatedAt = new Date();
     });
-    await queryInterface.bulkInsert("Users", data);
-
+    await queryInterface.bulkInsert("MyCourses", data);
     /**
      * Add seed commands here.
      *
@@ -23,13 +21,11 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("Users", null);
-
+    await queryInterface.bulkDelete("MyCourses", null);
     /**
      * Add commands to revert seed here.
      *
      * Example:
-     * await queryInterface.bulkDelete('People', null, {});
      */
   },
 };
