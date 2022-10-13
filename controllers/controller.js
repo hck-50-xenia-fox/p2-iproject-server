@@ -15,15 +15,10 @@ const {
 class Controller {
   static async signUp(req, res, next) {
     try {
-      const { username, email, password, phoneNumber, address } = req.body;
+      console.log(req.body);
+      const { email, password, role, firstName, lastName } = req.body;
       let data = (
-        await User.create({
-          username,
-          email,
-          password,
-          phoneNumber,
-          address,
-        })
+        await User.create({ email, password, role, firstName, lastName })
       ).get({ plain: true });
       delete data.password;
       res.status(201).json({ message: "user created successfully", data });
@@ -130,13 +125,25 @@ class Controller {
 
   static async addPaymentUser(req, res, next) {
     try {
-      const { itemId } = req.body;
+      const { ItemId } = req.body;
       let isEmpty = await Payment.findOne({
-        where: { FoodId, UserId: req.user.id },
+        where: { ItemId, UserDetailId: req.user.id },
       });
       if (isEmpty) throw { name: "favoriteExist" };
-      await Payment.create({ FoodId, UserId: req.user.id });
+      await Payment.create({ ItemId, UserDetailId: req.user.id });
       res.status(201).json({ message: "Added to card successfully" });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getPaymentUser(req, res, next) {
+    try {
+      let pay = await Payment.findAll({
+        where: { UserDetailId: req.user.id },
+        include: UserDetail,
+      });
+      res.status(200).json(pay);
     } catch (err) {
       next(err);
     }

@@ -21,15 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      type: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
       policeNum: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      registrationNumber: {
         allowNull: false,
         type: Sequelize.STRING,
       },
