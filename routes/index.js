@@ -19,12 +19,8 @@ router.get('/getPuzzle', MasterController.fetchPuzzle)
 
 router.get('/youtube', MasterController.fetchDataYoutube)
 
+router.get('/youtube-detail/:streamId', MasterController.fetchYoutubeDetail)
 
-
-
-
-
-
-
+router.get('/lichess', MasterController.fetchLichessData)
 
 module.exports = router;

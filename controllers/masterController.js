@@ -139,6 +139,36 @@ class MasterController {
     }
   }
 
+  static async fetchYoutubeDetail(req, res, next) {
+    try {
+      const params = req.params.streamId
+      const { data } = await axios({
+        method: 'GET',
+        url: 'https://youtube138.p.rapidapi.com/video/details/',
+        params: { id: `${params}`, hl: 'en', gl: 'US' },
+        headers: {
+          'X-RapidAPI-Key': 'ba0adeaaadmshf54087cc3ac0c23p1307b8jsn795dfc92afc6',
+          'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+        }
+      });
+
+      res.status(200).json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async fetchLichessData(req, res, next) {
+    try {
+      const { data } = await axios.get(`https://lichess.org/api/account/${headers}`)
+
+      res.status(200).json(data)
+
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
 
 
