@@ -43,6 +43,7 @@ class UserController {
         password,
         name,
         role: 'User',
+        status: 'Free',
         fullName,
         address,
       });
