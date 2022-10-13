@@ -1,0 +1,322 @@
+[
+    {
+        "description" : "Which Pokemon below has a fire type?",
+        "choice1" : "Fennekin",
+        "choice2" : "Hoothoot",
+        "choice3" : "Purrloin",
+        "choice4" : "Emolga",
+        "answer" : "Fennekin"
+    },
+    {
+        "description" : "Which Pokemon below has a water and dragon type",
+        "choice1" : "Staravia",
+        "choice2" : "Leavanny",
+        "choice3" : "Kingdra",
+        "choice4" : "Scizor",
+        "answer" : "Kingdra"
+    },
+    {
+        "description" : "Which Pokemon below has a normal type",
+        "choice1" : "Thwackey",
+        "choice2" : "Purugly",
+        "choice3" : "Emboar",
+        "choice4" : "Misdreavus",
+        "answer" : "Purugly"
+    },
+    {
+        "description" : "Which Pokemon below has a normal type",
+        "choice1" : "Thwackey",
+        "choice2" : "Purugly",
+        "choice3" : "Emboar",
+        "choice4" : "Misdreavus",
+        "answer" : "Purugly"
+    },
+    {
+        "description" : "Which Pokemon below has a ground and steel type",
+        "choice1" : "Crobat",
+        "choice2" : "Spoink",
+        "choice3" : "Celebi",
+        "choice4" : "Excadrill",
+        "answer" : "Excadrill"
+    },
+    {
+        "description" : "Which Pokemon below has a fighting type",
+        "choice1" : "Clobbopus",
+        "choice2" : "Poochyena",
+        "choice3" : "Aegislash",
+        "choice4" : "Grubbin",
+        "answer" : "Clobbopus"
+    },
+    {
+        "description" : "Which Pokemon below has a ice and flying type",
+        "choice1" : "Delibird",
+        "choice2" : "Lycanroc",
+        "choice3" : "Meowth",
+        "choice4" : "Probopass",
+        "answer" : "Delibird"
+    },
+    {
+        "description" : "Which Pokemon below has a leaf type",
+        "choice1" : "Gliscor",
+        "choice2" : "Leafeon",
+        "choice3" : "Polteageist",
+        "choice4" : "Nidoqueen",
+        "answer" : "Leafeon"
+    },
+    {
+        "description" : "Which Pokemon below has a leaf type",
+        "choice1" : "Gliscor",
+        "choice2" : "Leafeon",
+        "choice3" : "Polteageist",
+        "choice4" : "Nidoqueen",
+        "answer" : "Leafeon"
+    },
+    {
+        "description" : "Which Pokemon below has electric and fairy type",
+        "choice1" : "Dewpider",
+        "choice2" : "Dedenne",
+        "choice3" : "Noibat",
+        "choice4" : "Zweilous",
+        "answer" : "Dedenne"
+    },
+    {
+        "description" : "Which fire-type Pokemon below has the heaviest weight?",
+        "choice1" : "Ninetales",
+        "choice2" : "Rapidash",
+        "choice3" : "Magmar",
+        "choice4" : "Typhlosion",
+        "answer" : "Rapidash"
+    },
+    {
+        "description" : "Which fire-type Pokemon below has the heaviest weight?",
+        "choice1" : "Charizard",
+        "choice2" : "Arcanine",
+        "choice3" : "Magcargo",
+        "choice4" : "Ho-Oh",
+        "answer" : "Ho-Oh"
+    },
+    {
+        "description" : "Which fire-type Pokemon below has the heaviest weight?",
+        "choice1" : "Houndoom",
+        "choice2" : "Magby",
+        "choice3" : "Torchic",
+        "choice4" : "Combusken",
+        "answer" : "Houndoom"
+    },
+    {
+        "description" : "Which fire-type Pokemon below has the heaviest weight?",
+        "choice1" : "Blaziken",
+        "choice2" : "Torkoal",
+        "choice3" : "Internape",
+        "choice4" : "Camerupt",
+        "answer" : "Camerupt"
+    },
+    {
+        "description" : "Which fire-type Pokemon below has the heaviest weight?",
+        "choice1" : "Braixen",
+        "choice2" : "Heatmor",
+        "choice3" : "Emboar",
+        "choice4" : "Simisear",
+        "answer" : "Emboar"
+    },
+    {
+        "description" : "Which fairy-type Pokemon below has the heaviest weight?",
+        "choice1" : "Azumarill",
+        "choice2" : "Togetic",
+        "choice3" : "Wigglytuff",
+        "choice4" : "Clefable",
+        "answer" : "Clefable"
+    },
+    {
+        "description" : "Which fairy-type Pokemon below has the heaviest weight?",
+        "choice1" : "Mawile",
+        "choice2" : "Gardevoir",
+        "choice3" : "Togekiss",
+        "choice4" : "Florges",
+        "answer" : "Gardevoir"
+    },
+    {
+        "description" : "Which fairy-type Pokemon below has the heaviest weight?",
+        "choice1" : "Xerneas",
+        "choice2" : "Aromatisse",
+        "choice3" : "Sylveon",
+        "choice4" : "Slurpuff",
+        "answer" : "Xerneas"
+    },
+    {
+        "description" : "Which fairy-type Pokemon below has the heaviest weight?",
+        "choice1" : "Ribombee",
+        "choice2" : "Milcery",
+        "choice3" : "Shiinotic",
+        "choice4" : "Comfey",
+        "answer" : "Shiinotic"
+    },
+    {
+        "description" : "Which fairy-type Pokemon below has the heaviest weight?",
+        "choice1" : "Magearna",
+        "choice2" : "Morgrem",
+        "choice3" : "Grimmsnarl",
+        "choice4" : "Alcremie",
+        "answer" : "Magearna"
+    },
+    {
+        "description" : "Which water-type Pokemon below has the highest height?",
+        "choice1" : "Poliwrath",
+        "choice2" : "Tentacruel",
+        "choice3" : "Blastoise",
+        "choice4" : "Golduck",
+        "answer" : "Golduck"
+    },
+    {
+        "description" : "Which water-type Pokemon below has the highest height?",
+        "choice1" : "Dewgong",
+        "choice2" : "Seadra",
+        "choice3" : "Cloyster",
+        "choice4" : "Slowbro",
+        "answer" : "Dewgong"
+    },
+    {
+        "description" : "Which water-type Pokemon below has the highest height?",
+        "choice1" : "Vaporeon",
+        "choice2" : "Magikarp",
+        "choice3" : "Seaking",
+        "choice4" : "Starmie",
+        "answer" : "Seaking"
+    },
+    {
+        "description" : "Which water-type Pokemon below has the highest height?",
+        "choice1" : "Politoed",
+        "choice2" : "Slowking",
+        "choice3" : "Omastar",
+        "choice4" : "Feraligatr",
+        "answer" : "Feraligatr"
+    },
+    {
+        "description" : "Which water-type Pokemon below has the highest height?",
+        "choice1" : "Wailord",
+        "choice2" : "Octillery",
+        "choice3" : "Suicune",
+        "choice4" : "Swampert",
+        "answer" : "Wailord"
+    },
+    {
+        "description" : "Which ghost-type Pokemon below has the highest height?",
+        "choice1" : "Banette",
+        "choice2" : "Shuppet",
+        "choice3" : "Gengar",
+        "choice4" : "Misdreavus",
+        "answer" : "Gengar"
+    },
+    {
+        "description" : "Which ghost-type Pokemon below has the highest height?",
+        "choice1" : "Dusknoir",
+        "choice2" : "Dusclops",
+        "choice3" : "Yamask",
+        "choice4" : "Mismagius",
+        "answer" : "Dusknoir"
+    },
+    {
+        "description" : "Which ghost-type Pokemon below has the highest height?",
+        "choice1" : "Cofagrigus",
+        "choice2" : "Chandelure",
+        "choice3" : "Golurk",
+        "choice4" : "Trevenant",
+        "answer" : "Golurk"
+    },
+    {
+        "description" : "Which ghost-type Pokemon below has the highest height?",
+        "choice1" : "Blacephalon",
+        "choice2" : "Decidueye",
+        "choice3" : "Palossand",
+        "choice4" : "Lunala",
+        "answer" : "Lunala"
+    },
+    {
+        "description" : "Which ghost-type Pokemon below has the highest height?",
+        "choice1" : "Runerigus",
+        "choice2" : "Dragapult",
+        "choice3" : "Cursola",
+        "choice4" : "Marshadow",
+        "answer" : "Dragapult"
+    },
+    {
+        "description" : "Which steel-type Pokemon below has the lightest weight?",
+        "choice1" : "Jirachi",
+        "choice2" : "Honedge",
+        "choice3" : "Kartana",
+        "choice4" : "Klefki",
+        "answer" : "Kartana"
+    },
+    {
+        "description" : "Which steel-type Pokemon below has the lightest weight?",
+        "choice1" : "Doublade",
+        "choice2" : "Magnemite",
+        "choice3" : "Meltan",
+        "choice4" : "Togedemaru",
+        "answer" : "Togedemaru"
+    },
+    {
+        "description" : "Which steel-type Pokemon below has the lightest weight?",
+        "choice1" : "Perrserker",
+        "choice2" : "Escavalier",
+        "choice3" : "Durant",
+        "choice4" : "Duraludon",
+        "answer" : "Perrserker"
+    },
+    {
+        "description" : "Which steel-type Pokemon below has the lightest weight?",
+        "choice1" : "Skarmory",
+        "choice2" : "Klang",
+        "choice3" : "Lucario",
+        "choice4" : "Shieldon",
+        "answer" : "Perrserker"
+    },
+    {
+        "description" : "Which steel-type Pokemon below has the lightest weight?",
+        "choice1" : "Aron",
+        "choice2" : "Magneton",
+        "choice3" : "Bronzor",
+        "choice4" : "Bisharp",
+        "answer" : "Magneton"
+    },
+    {
+        "description" : "Which dragon-type Pokemon below has the lightest weight?",
+        "choice1" : "Goomy",
+        "choice2" : "Dreepy",
+        "choice3" : "Applin",
+        "choice4" : "Flapple",
+        "answer" : "Applin"
+    },
+    {
+        "description" : "Which dragon-type Pokemon below has the lightest weight?",
+        "choice1" : "Noibat",
+        "choice2" : "Drakloak",
+        "choice3" : "Dratini",
+        "choice4" : "Appletun",
+        "answer" : "Dratini"
+    },
+    {
+        "description" : "Which dragon-type Pokemon below has the lightest weight?",
+        "choice1" : "Vibrava",
+        "choice2" : "Dragonair",
+        "choice3" : "Deino",
+        "choice4" : "Sliggoo",
+        "answer" : "Vibrava"
+    },
+    {
+        "description" : "Which dragon-type Pokemon below has the lightest weight?",
+        "choice1" : "Zweilous",
+        "choice2" : "Bagon",
+        "choice3" : "Hakamo-o",
+        "choice4" : "Latias",
+        "answer" : "Latias"
+    },
+    {
+        "description" : "Which dragon-type Pokemon below has the lightest weight?",
+        "choice1" : "Flygon",
+        "choice2" : "Dragalge",
+        "choice3" : "Latios",
+        "choice4" : "Kommo-o",
+        "answer" : "Latios"
+    }     
+]
