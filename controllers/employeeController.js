@@ -90,8 +90,7 @@ class EmployeeController {
         method: "GET",
         url: "https://programming-memes-images.p.rapidapi.com/v1/memes",
         headers: {
-          "X-RapidAPI-Key":
-            "e43e110b70msh3ec1e2d38d14bd2p1661cbjsn0484a3490ad6",
+          "X-RapidAPI-Key": process.env.MEME_API_KEY,
           "X-RapidAPI-Host": "programming-memes-images.p.rapidapi.com",
         },
       });

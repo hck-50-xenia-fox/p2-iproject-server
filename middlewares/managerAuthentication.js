@@ -11,7 +11,6 @@ async function managerAuthentication(req, res, next) {
     if (!verify) {
       throw { name: "Not Login" };
     }
-    console.log(verify);
     const findManager = await Manager.findOne({
       where: { email: verify.email },
     });

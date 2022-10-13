@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-
-const signToken = (payload) => jwt.sign(payload, "RAHASIA");
-const verifyToken = (token) => jwt.verify(token, "RAHASIA");
+const secretKey = process.env.SECRET_KEY;
+const signToken = (payload) => jwt.sign(payload, secretKey);
+const verifyToken = (token) => jwt.verify(token, secretKey);
 
 module.exports = {
   signToken,
