@@ -131,6 +131,9 @@ class ControllerMotorcycle {
 
   static async addMotorcycle(req, res, next) {
     try {
+      if (!brand || !model || !imageUrl || !transmission || !fuel || !price) {
+        throw { name: `BADREQUEST` };
+      }
       let motorcycle = await Motorcycle.create({
         brand: req.body.brand,
         model: req.body.model,
