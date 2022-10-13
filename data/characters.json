@@ -1,11 +1,5 @@
 [
     {
-        "name": "Lyria",
-        "element": "Elementless",
-        "imageUrl": "https://gbf-img.com/character-idcharacter/3030182000_Lyria_(Event)/3030182000_Lyria_(Event)_02_zoom.png",
-        "description": "The young girl who could only sit by and watch her friends has awoken. She is no longer the protected, but the protector. Her heart calls forth grand miracles to the azure skies."
-    },
-    {
         "name": "Katalina",
         "element": "Water",
         "imageUrl": "https://gbf-img.com/character-idcharacter/3040118000_Katalina_(Promo)/3040118000_Katalina_(Promo)_02_zoom.png",
@@ -51,6 +45,6 @@
         "name": "Sandalphon",
         "element": "Light",
         "imageUrl": "https://gbf-img.com/character-idcharacter/3040153000_Sandalphon_(Event)/3040153000_Sandalphon_(Event)_03_zoom.png",
-        "description": "Having conquered the trial of the beast, the Lord of Flames bears a new sword in his hand, but old convictions in his heart. With the help of his comrades, he will struggle on until the day his ideals leave the world of his dreams and enter the light of the sun."
+        "description": "Having arisen from a deep, long slumber, this archangel has inherited the will of the supreme primarch, Lucifer. Though Sandalphon previously had no role to play, he now bears the burden of carrying out vengeance in hopes of fulfilling a promise."
     }
 ]
