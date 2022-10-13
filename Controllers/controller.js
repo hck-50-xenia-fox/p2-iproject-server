@@ -104,6 +104,18 @@ class Controller{
       next(error);
     }
   }
+  static async search(req, res, next) {
+    try {
+      const { search } = req.body;
+      // const searchQuery = req.query.search_query
+      const url = `${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&q=${search}+dota+2`;
+      const response = await axios.get(url);
+      const titles = response.data.items;
+      res.status(200).json(titles);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = Controller
