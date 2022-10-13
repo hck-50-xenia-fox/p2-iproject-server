@@ -6,6 +6,7 @@ List of available endpoints:
 
 - `POST /register`
 - `POST /login`
+- `PUT /register`
 - `GET /pokemons`
 - `GET /products/:name`
 - `POST /questions`
@@ -107,6 +108,98 @@ _400 - Bad Request_
   "message": "Email/password is required"
 }
 ```
+
+## 3. PUT /
+
+### Description
+- Update products detail by id
+
+### Request
+- Headers
+```json
+{
+  "access_token": STRING
+}
+```
+
+- Params
+```json
+{
+  "id": INTEGER
+}
+```
+- Body
+```json
+{
+  "name": STRING,
+  "description": STRING,
+  "price": INTEGER,
+  "stock": INTEGER,
+  "imgUrl": STRING,
+  "categoryId": INTEGER,
+}
+```
+
+### Response
+_200 - OK_
+
+- Body
+```json
+{
+    "message": "Product updated successfully"
+}
+```
+
+_400 - Bad Request_
+
+- Body
+```json
+  {
+    "msg": 
+    [
+        "Please dont let the product name empty", 
+        OR
+        "Please dont let the product description empty",
+        OR
+        "Please dont let the product price empty",
+        OR
+        "Please dont let the product stock empty",
+        OR
+        "Please dont let the product image empty",
+        OR
+        "Please dont let the product category empty",
+        OR
+        "Minimum product price is Rp.1000",
+    ]
+}
+```
+
+_404 - Not Found_
+
+- Body
+```json
+{
+    "msg": "Product to edited not found"
+}
+```
+
+_401 - Unauthorized_
+
+- Body
+```json
+{
+    "msg": "User not login yet!"
+}
+
+OR
+
+{
+    "msg": "Invalid Token"
+}
+```
+
+
+
 
 ## 3. POST /pub/google-sign-in
 

@@ -9,7 +9,7 @@ router.post('/register', indexController.register);
 router.post('/login', indexController.login);
 
 router.use(authentication)
-router.put('/register', indexController.updateProfile)
+router.put('/users', indexController.updateProfile)
 router.use('/pokemons', pokemonRouter)
 router.use('/questions', questionRouter)
 
