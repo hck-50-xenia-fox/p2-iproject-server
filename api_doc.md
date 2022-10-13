@@ -9,6 +9,7 @@ List of available endpoints:
 - `PUT /users`
 - `GET /pokemons`
 - `GET /products/:name`
+- `GET /questions`
 - `POST /questions`
 
 &nbsp;
