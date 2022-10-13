@@ -71,6 +71,39 @@ class Controller{
         next(err);
       });
   }
+  static async matches(req, res, next) {
+    try {
+      const news = await liquipediaApi.dota.getMatches();
+      res.status(200).json(news);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async tournaments(req, res, next) {
+    try {
+      const news = await liquipediaApi.dota.getTournaments();
+      news.length = Math.min(news.length, 3);
+      res.status(200).json(news);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async teams(req, res, next) {
+    try {
+      const news = await liquipediaApi.dota.getTeams();
+      res.status(200).json(news);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async heroes(req, res, next) {
+    try {
+      const news = await liquipediaApi.dota.getHeroes();
+      res.status(200).json(news);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = Controller
