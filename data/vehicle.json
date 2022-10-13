@@ -1,0 +1,44 @@
+[
+  {
+    "UserDetailId": 1,
+    "model":"Honda-crv",
+    "policeNum": "473 01",
+    "basePrice": 3000
+  },
+  {
+    "UserDetailId": 2,
+    "model":"Honda-crv",
+    "policeNum": "3230",
+    "basePrice": 3000
+  },
+  {
+    "UserDetailId": 3,
+    "model":"Honda-crv",
+    "policeNum": "871 60",
+    "basePrice": 3000
+  },
+  {
+    "UserDetailId": 4,
+    "model":"Honda-crv",
+    "policeNum": "BB5379",
+    "basePrice": 2000
+  },
+  {
+    "UserDetailId": 5,
+    "model":"Honda-crv",
+    "policeNum": "C53129rwe",
+    "basePrice": 3000
+  },
+  {
+    "UserDetailId": 6,
+    "model":"Honda-crv",
+    "policeNum": "B53129rhs",
+    "basePrice": 2000
+  },
+  {
+    "UserDetailId": 7,
+    "model":"Honda-crv",
+    "policeNum": "H53124u930e",
+    "basePrice": 2000
+  }
+]

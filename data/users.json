@@ -1,0 +1,58 @@
+[
+  {
+    "firstName": "Aldo",
+    "lastName": "Marcelino",
+    "email": "aldomarcelino@gmail.com",
+    "password": "Bismillah",
+    "role": "admin"
+  },
+  {
+    "firstName": "Cleon",
+    "lastName": "Pelfer",
+    "email": "cpelfer0@zdnet.com",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Lynnea",
+    "lastName": "Likly",
+    "email": "llikly1@who.int",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Peyton",
+    "lastName": "Simakov",
+    "email": "psimakov2@berkeley.edu",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Aryn",
+    "lastName": "Tarbin",
+    "email": "atarbin3@xinhuanet.com",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Sunshine",
+    "lastName": "Daymont",
+    "email": "sdaymont4@fc2.com",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Jana",
+    "lastName": "Badcock",
+    "email": "jbadcock5@ucla.edu",
+    "password": "123456",
+    "role": "driver"
+  },
+  {
+    "firstName": "Elihu",
+    "lastName": "Lissimore",
+    "email": "elissimore6@behance.net",
+    "password": "123456",
+    "role": "driver"
+  }
+]
