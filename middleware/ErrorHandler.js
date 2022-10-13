@@ -21,6 +21,9 @@ const ErrorHandler = async (error, req, res, next) => {
   } else if (error.name === "not found") {
     code = 404;
     msg = "not found";
+  } else if (error.name === "user not found") {
+    code = 404;
+    msg = "invalid user or password";
   }
 
   res.status(code).json({ error: { message: msg } });

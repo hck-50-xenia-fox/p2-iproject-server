@@ -9,9 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Course.hasMany(models.MyCourse, {
-        foreignKey: "CourseId",
-      });
+      Course.hasMany(models.MyCourse);
     }
   }
   Course.init(
@@ -28,15 +26,27 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      program: {
+      description: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         validate: {
           notEmpty: {
             msg: "Program is required",
           },
           notEmpty: {
             msg: "Program is required",
+          },
+        },
+      },
+      price: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            msg: "Price is required",
+          },
+          notNull: {
+            msg: "Price is required",
           },
         },
       },

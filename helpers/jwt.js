@@ -1,10 +1,12 @@
 const jwt = require("jsonwebtoken");
-
+// console.log("ini masuk");
 const generateToken = (payload) => {
-  jwt.sign(payload, process.env.SECRET_KEY);
+  // console.log(process.env.SECRET_KEY);
+  return jwt.sign(payload, process.env.SECRET_KEY);
 };
+// console.log(generateToken, "<<<");
 const verifyToken = (token) => {
-  jwt.verify(token, process.env.SECRET_KEY);
+  return jwt.verify(token, process.env.SECRET_KEY);
 };
 
 module.exports = { generateToken, verifyToken };
