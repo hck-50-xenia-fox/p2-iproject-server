@@ -5,6 +5,9 @@ const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes/index");
 const errorhandler = require('./middlewares/errorhandler')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+  }
 
 
 const PORT = 3000;
