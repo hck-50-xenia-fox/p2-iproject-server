@@ -41,7 +41,7 @@ class productController{
             })
             res.status(201).json({msg: 'Success add new product'})
         } catch (error) {
-            console.log(error)
+            next(error)
         }
     }
 

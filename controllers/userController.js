@@ -1,8 +1,10 @@
 const {User} = require('../models');
 const {compareHashPassword} = require('../helpers/bcrypt');
 const {signPayloadToToken} = require('../helpers/jwt');
+const { OAuth2Client } = require('google-auth-library');
 const axios = require('axios');
 const nodemailer = require('../helpers/nodemailer');
+
 
 class UserController{
     static async loginPost(req, res, next){
@@ -48,6 +50,41 @@ class UserController{
           res.status(201).json(data);
         } catch (error) {
           next(error)
+        }
+      }
+
+      static async googleLogin(req, res, next) {
+        try {
+          const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+          const ticket = await client.verifyIdToken({
+            idToken: req.headers.google_token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+          });
+          // console.log(req.headers);
+          const payload = ticket.getPayload();
+          const [user, created] = await User.findOrCreate({
+            where: {
+              email: payload.email,
+            },
+            defaults: {
+              username: payload.name,
+              role: 'Customer',
+              email: payload.email,
+              password: 'halo_user',
+              address: 'Depok',
+              phoneNumber: '0986241',
+            },
+          });
+          const access_token = signPayloadToToken({
+            id: user.id,
+            email: user.email,
+            role: user.role,
+            password: user.password,
+          });
+          let payloadLogin = { id: user.id, role: user.role };
+          res.status(200).json({ access_token, payloadLogin });
+        } catch (error) {
+          next(error);
         }
       }
 
