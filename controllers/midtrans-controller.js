@@ -1,4 +1,5 @@
 const midtransClient = require('midtrans-client');
+const { User } = require('../models');
 
 // prepare Snap API parameter ( refer to: https://snap-docs.midtrans.com ) minimum parameter example:
 let snap = new midtransClient.Snap({
@@ -12,18 +13,23 @@ class MidtransController {
     try {
       let parameter = {
         transaction_details: {
-          order_id: 'tes4-transactios-858',
+          order_id: `tez-transactios00-${~~(Math.random() * 10999)}`,
           gross_amount: 500000,
         },
         credit_card: {
           secure: true,
         },
+        customer_details: {
+          fullName: `${req.user.fullName}`,
+          email: `${req.user.email}`,
+        },
       };
 
       // create transaction
       const response = await snap.createTransaction(parameter);
+      await User.update({ status: 'Gold' }, { where: { id: req.user.id } });
 
-      res.status(201).json(response);
+      await res.status(201).json(response);
     } catch (err) {
       next(err);
     }

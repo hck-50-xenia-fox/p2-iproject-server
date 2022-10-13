@@ -6,7 +6,7 @@ const passHash = pass => bcrypt.hashSync(pass, 10);
 const passCompare = (pass, hash) => bcrypt.compareSync(pass, hash);
 
 const tokenSign = payload => jwt.sign(payload, process.env.SECRET_KEY);
-const tokenVerify = token => jwt.verify(token, proceess.env.SECRET_KEY);
+const tokenVerify = token => jwt.verify(token, process.env.SECRET_KEY);
 
 const formatMessage = (username, text) => {
   return {
