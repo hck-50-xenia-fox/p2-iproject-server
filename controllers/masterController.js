@@ -57,6 +57,28 @@ class MasterController {
     }
   }
 
+  static async fetchChessProfile(req, res, next) {
+    try {
+      const { username, status } = req.user
+      const { data } = await axios.get(`https://api.chess.com/pub/player/${username}`)
+
+      res.status(200).json({ data, status })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async fetchChessStats(req, res, next) {
+    try {
+      const { username } = req.user
+      const { data } = await axios.get(`https://api.chess.com/pub/player/${username}/stats`)
+
+      res.status(200).json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
 
 
