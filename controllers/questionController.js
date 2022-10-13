@@ -7,8 +7,6 @@ class questionController {
             
             const { description, choice1, choice2, choice3, choice4, answer } = req.body
 
-            console.log(description, choice1, choice2, choice3, choice4, answer)
-
             if (answer !== choice1 && answer !== choice2 && answer !== choice3 && answer !== choice4 ) {
                 throw {name: 'Not match answer'}
             }
