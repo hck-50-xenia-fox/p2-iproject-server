@@ -28,6 +28,7 @@ class UserController {
         userId: findUser.id,
         role: findUser.role,
         name: findUser.name,
+        status: findUser.status,
       });
     } catch (err) {
       next(err);
@@ -100,6 +101,7 @@ class UserController {
           fullName,
           password: 'wop',
           role: 'User',
+          status: 'Free',
           address: 'jalan mana?',
         },
       });
@@ -117,6 +119,7 @@ class UserController {
         userId: findUser.id,
         role: findUser.role,
         name: findUser.name,
+        status: findUser.status,
       });
     } catch (err) {
       next(err);
