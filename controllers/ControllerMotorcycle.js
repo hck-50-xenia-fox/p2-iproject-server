@@ -164,7 +164,7 @@ class ControllerMotorcycle {
       if (!findMotorcycle) {
         throw { name: "DATA_NOT_FOUND" };
       }
-      await findMotorcycle.updateOne({ status: "Available" });
+      await findMotorcycle.updateOne({ status: "Rented" });
       res.status(200).json({
         message: `Motorcycle rented successfully`,
       });
