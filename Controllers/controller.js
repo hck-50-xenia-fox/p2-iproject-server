@@ -3,7 +3,6 @@ const baseApiUrl = "https://www.googleapis.com/youtube/v3";
 const { LiquipediaApi } = require("liquipedia-api");
 const nodemailer = require("../helpers/nodemailer");
 const { createToken } = require("../helpers/jwt");
-const { readToken } = require("../helpers/jwt");
 const axios = require("axios");
 const liquipediaApi = new LiquipediaApi({
   USER_AGENT: "MyAwesomeProject/1.0 (my.email@gmail.com)",
