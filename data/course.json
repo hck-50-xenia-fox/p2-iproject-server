@@ -1,0 +1,47 @@
+[
+    {
+        "name" : "connecting backend to frontend",
+        "description" : "In this lesson, we learned about communication between the front-end and back-end of an application and the different ways of rendering a web app. Let’s recap some key takeaways from this lesson:Front-end web development concerns all aspects of a web app that a user can see and directly interact with.Back-end web development concerns how a website functions, and the storage and retrieval of data.The front-end and back-end of a web app communicate via an HTTP request/response cycle. The types of data that servers send to the browser include HTML documents, JavaScript, static assets, and formatted data.Websites can be rendered on the client-side or server-side. Hybrid rendering combines both of these approaches.With client-side rendering, JavaScript dynamically generates all content in the browser as the user navigates the site. Content is rendered quickly, after the initial page load.Client-side rendering is ideal for dynamic sites, with rich JavaScript interactions.With server-side rendering, the server sends the content to the browser. Static content is quickly viewable in the browser, but rich site interactions can take longer to load.Server-side rendering is ideal for mostly static sites, where there is not a lot of user interaction.Hybrid rendering models attempt to optimize speed, performance, and SEO by combining aspects of client and server-side rendering.",
+        "price": "50000"
+    },
+    {
+        "name" : "jQuery",
+        "description" : "That’s just a taste of what you can do with jQuery. While there’s still a lot to learn, in this unit you used jQuery to add dynamic behavior to a website. With jQuery objects, you can quickly target elements, handle events and add visual effects with just a few lines of code.That said, when using any jQuery tools, it is important to consider how events and effects will appear on different platforms.In this lesson, you learned:About JavaScript libraries.How to add jQuery to your web page.How to avoid loading errors with the `.ready()` method.About jQuery objects and their methods.How to target elements by id and class.Naming conventions for storing jQuery objects in JavaScript variables.How to add event handlers with `.on()`.A couple jQuery effects, such as `.hide()` and `.show()`.",
+        "price": "45000"
+    },
+    {
+        "name" : "promise",
+        "description" : "Promises are a difficult concept even for experienced developers, so pat yourself on the back. You’ve learned a ton about asynchronous JavaScript and promises. Let’s review: Promises are JavaScript objects that represent the eventual result of an asynchronous operation.Promises can be in one of three states: pending, resolved, or rejected.A promise is settled if it is either resolved or rejected.We construct a promise by using the `new` keyword and passing an executor function to the `Promise` constructor method.`setTimeout()` is a Node function which delays the execution of a callback function using the event-loop.We use `.then()` with a success handler callback containing the logic for what should happen if a promise resolves.We use `.catch()` with a failure handler callback containing the logic for what should happen if a promise rejects.Promise composition enables us to write complex, asynchronous code that’s still readable. We do this by chaining multiple `.then()`‘s and `.catch()`‘s.To use promise composition correctly, we have to remember to `return` promises constructed within a `.then()`.We should chain multiple promises rather than nesting them.To take advantage of concurrency, we can use `Promise.all()`.",
+        "price": "50000"
+    },
+    {
+        "name" : "test with jest",
+        "description" : "We have learned that Jest is an easy-to-use framework for testing in a JavaScript environment because it combines a test-runner with assertion methods like the `expect()` API.We also learned some of the basic syntax involved with creating a simple unit test, such as the `test()` function.After tackling basic unit tests we adventured into the realm of testing asynchronous code with Jest by using the `done` parameter to wait for asynchronous callbacks and the `async`/`await` keywords to wait for Promises to resolveLastly, we learned how to mock functions using `jest.fn()` and make use of mocked modules with `jest.mock()` by mocking the Axios module.While we have learned a lot there is always more knowledge to be obtained and we encourage you to continue exploring Jest and its wonderful features!",
+        "price": "40000"
+    },
+    {
+        "name" : "SQL for marketer",
+        "description" : "we learned how to build a funnel from a single table, compare funnels for A/B tests, and create a funnel from multiple tables using `LEFT JOIN`.If you are still unsure of the queries, make sure to go back and copy some queries in your notes before moving on!",
+        "price": "40000"
+    },
+    {
+        "name" : "basic HTML",
+        "description" : "you are well on your way to becoming a skilled web developer.HTML stands for HyperText Markup Language and is used to create the structure and content of a webpage.Most HTML elements contain opening and closing tags with raw text or other HTML tags between them.HTML elements can be nested inside other elements. The enclosed element is the child of the enclosing parent element.Any visible content should be placed within the opening and closing `<body>` tags.Headings and sub-headings, `<h1>` to `<h6>` tags, are used to provide titles for sections of content.`<p>`, `<span>` and `<div>` tags specify text or blocks.The `<em>` and `<strong>` tags are used to emphasize text.Line breaks are created with the `<br>` tag.Ordered lists (`<ol>`) are numbered and unordered lists (`<ul>`) are bulleted.Images (`<img>`) and videos (`<video>`) can be added by linking to an existing source.",
+        "price": "60000"
+    },
+    {
+        "name" : "wireframing",
+        "description" : "A wireframe is a collection of sketches and notes that depict a website as it would look on a browser, a tablet, or a mobile device. It shows the layout of the app’s elements, like navigation bars, buttons, content placement, and more—it’s like the blueprint to our app! Here, we’ll be focussing on hand-drawn wireframes without too much detail; these are sometimes called *low-fidelity wireframes*.The wireframe outlines the purpose of the app’s pages (or screens), answering questions like: “What is the user trying to get done when they see this page?” It also summarizes the relationships between different parts of the app and the results of interacting with the app’s elements, answering questions like: “What happens when the user clicks this button?”",
+        "price": "50000"
+    },
+    {
+        "name" : "malware",
+        "description" : "Cybersecurity is full of terminology, and it can be hard to keep track of it all. In order to discuss how passwords can be targeted, we’ll need to review some of that terminology. Don’t worry if there are some things you aren’t already familiar with, this section will give you all the information you need for this article!While authentication and authorization sound similar, there is an important distinction between the two. Authentication is about proving your identity, while authorization is about what privileges someone has. For instance, logging into a computer is authentication, but whether or not you’re allowed to run a certain program once you’re logged in is authorization. Passwords are commonly used for authentication.",
+        "price": "60000"
+    },
+    {
+        "name" : "design thinking",
+        "description" : "A large part of becoming a designer is honing your creativity. Designers often have processes and practices they use to aid them in coming up with ideas and solutions. In this course, you’ll learn about methods for defining a problem to solve and ideating potential solutions to the problem. After this course, you will be able to:Define a problem statement based on research.Brainstorm possible solutions to a defined problem.Sketch examples of brainstormed ideas.Iterate on ideas and articulate the benefits of doing so.Receive qualitative user feedback on early design concepts.Understand what UX case studies are and the importance of documentation.",
+        "price": "50000"
+    }
+]
