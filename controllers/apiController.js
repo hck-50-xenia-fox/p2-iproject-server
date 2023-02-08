@@ -53,7 +53,7 @@ class ApiController {
 
       const { data } = await axios({
         method: "GET",
-        url: `${apiUrl}/fixtures?league=39&season=${year}&from=${pastDate}&to=${futureDate}`,
+        url: `${apiUrl}/fixtures?league=39&season=2022&from=${pastDate}&to=${futureDate}`,
         headers: {
           "X-RapidAPI-Key": process.env.API_KEY_FOOTBALL,
           "X-RapidAPI-Host": "v3.football.api-sports.io",
@@ -124,7 +124,7 @@ class ApiController {
 
       const { data } = await axios({
         method: "GET",
-        url: `${apiUrl}/fixtures?league=2&season=${year}&from=${pastDate}&to=${futureDate}`,
+        url: `${apiUrl}/fixtures?league=2&season=2022&from=${pastDate}&to=${futureDate}`,
         headers: {
           "X-RapidAPI-Key": process.env.API_KEY_FOOTBALL,
           "X-RapidAPI-Host": "v3.football.api-sports.io",
